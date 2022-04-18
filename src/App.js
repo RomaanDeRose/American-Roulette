@@ -52,6 +52,23 @@ function App() {
     setMustSpin(true);
   };
 
+  const conditional =
+    data[prizeNumber].style.backgroundColor === "#318D42"
+      ? {
+          backgroundColor: "#318D42",
+          padding: "4px 8px",
+          borderRadius: "8px",
+        }
+      : data[prizeNumber].style.backgroundColor === "#000700"
+      ? {
+          backgroundColor: "#000700",
+          padding: "4px 8px",
+          borderRadius: "8px",
+        }
+      : { backgroundColor: "#E31C2E", padding: "4px 8px", borderRadius: "8px" };
+
+  const numberBet = <span style={conditional}>{data[prizeNumber].option}</span>;
+
   const usuario = 18;
 
   return (
@@ -71,21 +88,32 @@ function App() {
         mustStartSpinning={mustSpin}
         prizeNumber={prizeNumber}
         data={data}
-        onStopSpinning={() => {
-          setMustSpin(false);
-          console.log(prizeNumber);
-        }}
+        onStopSpinning={() => setMustSpin(false)}
       />
       <button onClick={handleSpinClick}>SPIN</button>
-      <h2>{!mustSpin ? data[prizeNumber].option : "ruleta girando..."}</h2>
-      <p>Eligiste el numero: {usuario}</p>
-      <h3>
-        {data[prizeNumber].option === usuario && !mustSpin
-          ? "Acertaste!"
-          : data[prizeNumber].option !== usuario && !mustSpin
-          ? "Perdiste. Gira de nuevo"
-          : ""}
-      </h3>
+      <h2>
+        {!mustSpin ? <>Último número: {numberBet}</> : "ruleta girando..."}
+      </h2>
+      <p>
+        Eligiste el numero:{" "}
+        <span
+          style={{
+            fontSize: "1.7rem",
+            fontWeight: "bold",
+            backgroundColor: "#E31C2E",
+            padding: "4px 8px",
+            borderRadius: "8px",
+          }}
+        >
+          {usuario}
+        </span>
+      </p>
+      {data[prizeNumber].option === usuario && !mustSpin && (
+        <h3 className="win">"Acertaste!"</h3>
+      )}
+      {data[prizeNumber].option !== usuario && !mustSpin && (
+        <h3 className="lose">"Perdiste. Gira de nuevo"</h3>
+      )}
     </div>
   );
 }
