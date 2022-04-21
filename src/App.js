@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Wheel } from "react-custom-roulette";
 import "./App.css";
 
+import Board from "./components/Board";
+
 const data = [
   { option: 0, style: { backgroundColor: "#318D42" } },
   { option: 32, style: { backgroundColor: "#E31C2E" } },
@@ -114,6 +116,7 @@ function App() {
       {data[prizeNumber].option !== usuario && !mustSpin && (
         <h3 className="lose">"Perdiste. Gira de nuevo"</h3>
       )}
+      <Board></Board>
     </div>
   );
 }
