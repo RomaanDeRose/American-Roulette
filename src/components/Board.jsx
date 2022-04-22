@@ -2,8 +2,11 @@ import "./Board.scss";
 import { numbers, chances } from "../utils/numbers";
 
 const [zero, ...restNumbers] = numbers;
-function Board() {
+
+function Board({ selectedNumbers, setSelectedNumbers }) {
   console.log(chances);
+  console.log(restNumbers);
+
   return (
     <div id="Board">
       <div>
@@ -15,6 +18,15 @@ function Board() {
             <span
               key={number.value}
               style={{ background: number.color, color: "white" }}
+              onClick={() =>
+                setSelectedNumbers([
+                  ...selectedNumbers,
+                  {
+                    value: number.value,
+                    color: number.color,
+                  },
+                ])
+              }
             >
               {number.value}
             </span>
