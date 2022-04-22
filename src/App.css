@@ -33,19 +33,6 @@ h3 {
   background-color: #e31c2e;
   padding: 1rem;
   border-radius: 10px;
-  animation: shadow 500ms ease-in-out infinite;
-}
-
-@keyframes shadow {
-  0% {
-    box-shadow: 0 0 0 0 #e31c2e40;
-  }
-  50% {
-    box-shadow: 0 0 0 10px #e31c2e40;
-  }
-  100% {
-    box-shadow: 0 0 0 0 #e31c2e40;
-  }
 }
 
 .lose {
@@ -53,16 +40,4 @@ h3 {
   background-color: #000700;
   padding: 1rem;
   border-radius: 10px;
-  animation: shadow 500ms ease-in-out infinite;
-}
-@keyframes shadow {
-  0% {
-    box-shadow: 0 0 0 0 #00070040;
-  }
-  50% {
-    box-shadow: 0 0 0 10px #00070040;
-  }
-  100% {
-    box-shadow: 0 0 0 0 #00070040;
-  }
 }
