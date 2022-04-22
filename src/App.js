@@ -35,7 +35,7 @@ function App() {
 
   return (
     <div className="App">
-      <h2 className="title">Ruleta Americana!</h2>
+      <h2 className="title">Ruleta Europea!</h2>
       {selectedNumbers.some(
         (number) => number.value === data[prizeNumber].option
       ) &&

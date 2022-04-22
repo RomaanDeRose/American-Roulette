@@ -13,9 +13,10 @@ function Board({ selectedNumbers, setSelectedNumbers }) {
         <span style={{ background: "green", color: "white" }}>
           {zero.value}
         </span>
-        <div>
+        <div className="common-numbers">
           {restNumbers.map((number) => (
             <span
+              className="number"
               key={number.value}
               style={{ background: number.color, color: "white" }}
               onClick={() =>

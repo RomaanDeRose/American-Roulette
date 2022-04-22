@@ -1,4 +1,4 @@
-export const numbers = [
+const numbers = [
     {
         value: 0,
         color: 'none',
@@ -234,6 +234,8 @@ const column3 = {
     bets: 0
 }
 
+const chances = [red, black, pair, odd, minor, major, dozen1, dozen2, dozen3, column1, column2, column3];
+
 for (let i = 1; i < numbers.length; i++) {
     const number = numbers[i];
 
@@ -274,4 +276,4 @@ for (let i = 1; i < numbers.length; i++) {
     }
 }
 
-export const chances = [red, black, pair, odd, minor, major, dozen1, dozen2, dozen3, column1, column2, column3];
+export {numbers, chances};
