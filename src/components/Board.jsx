@@ -7,10 +7,34 @@ function Board({ selectedNumbers, setSelectedNumbers }) {
   console.log(chances);
   console.log(restNumbers);
 
+  const userBet = (number) => {
+    console.log(number, number.value);
+    if (selectedNumbers.map((n) => n.value).includes(number.value)) {
+      alert("Ya apostaste el número: " + number.value);
+    } else {
+      setSelectedNumbers([
+        ...selectedNumbers,
+        {
+          value: number.value,
+          color: number.color,
+        },
+      ]);
+    }
+  };
+
   return (
     <div id="Board">
       <div>
-        <span style={{ background: "green", color: "white" }}>
+        <span
+          style={{
+            background: "green",
+            color: "white",
+            display: "inline-block",
+            width: "100%",
+            cursor: "pointer",
+          }}
+          onClick={() => userBet({ value: 0, color: "green" })}
+        >
           {zero.value}
         </span>
         <div className="common-numbers">
@@ -19,15 +43,7 @@ function Board({ selectedNumbers, setSelectedNumbers }) {
               className="number"
               key={number.value}
               style={{ background: number.color, color: "white" }}
-              onClick={() =>
-                setSelectedNumbers([
-                  ...selectedNumbers,
-                  {
-                    value: number.value,
-                    color: number.color,
-                  },
-                ])
-              }
+              onClick={() => userBet(number)}
             >
               {number.value}
             </span>

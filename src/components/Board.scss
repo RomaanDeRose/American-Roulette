@@ -1,18 +1,20 @@
 #Board {
-    div {
-        background-color: grey;
-        .common-numbers {
-            display: grid;
-            grid-template: repeat(3, 1fr) / repeat(12, 1fr);
-            .number:nth-of-type(3n) {
-                grid-row: 1;
-            }
-            .number:nth-of-type(3n+2) {
-                grid-row: 2;
-            }
-            .number:nth-of-type(3n+1) {
-                grid-row: 3;
-            }
-        }
+  margin: 1.5rem;
+  div {
+    background-color: grey;
+    .common-numbers {
+      display: grid;
+      grid-template: repeat(3, 1fr) / repeat(12, 1fr);
+      cursor: pointer;
+      .number:nth-of-type(3n) {
+        grid-row: 1;
+      }
+      .number:nth-of-type(3n + 2) {
+        grid-row: 2;
+      }
+      .number:nth-of-type(3n + 1) {
+        grid-row: 3;
+      }
     }
+  }
 }

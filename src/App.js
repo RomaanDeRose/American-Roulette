@@ -8,18 +8,7 @@ function App() {
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(32);
   const [selectedNumbers, setSelectedNumbers] = useState([]);
-
-  // console.log(
-  //   selectedNumbers,
-  //   data[prizeNumber].option,
-  //   selectedNumbers.includes(data[prizeNumber].option)
-  // );
-
-  const existSelectedNumbers = () =>
-    selectedNumbers.forEach((n) => {
-      if (n.value === data[prizeNumber].option) return true;
-      else return false;
-    });
+  console.log(selectedNumbers, data[prizeNumber].option);
 
   const handleSpinClick = () => {
     const newPrizeNumber = Math.floor(Math.random() * data.length);
@@ -40,9 +29,10 @@ function App() {
         (number) => number.value === data[prizeNumber].option
       ) &&
         !mustSpin && <h3 className="win">Acertaste!</h3>}
-      {existSelectedNumbers === false && !mustSpin && (
-        <h3 className="lose">Perdiste</h3>
-      )}
+      {selectedNumbers
+        .map((n) => n.value)
+        .includes(data[prizeNumber].option) === false &&
+        !mustSpin && <h3 className="lose">Perdiste</h3>}
       <Wheel
         textColors={["#fff"]}
         fontSize={18}
