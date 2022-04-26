@@ -8,7 +8,6 @@ function App() {
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(32);
   const [selectedNumbers, setSelectedNumbers] = useState([]);
-  console.log(selectedNumbers, data[prizeNumber].option);
 
   const handleSpinClick = () => {
     const newPrizeNumber = Math.floor(Math.random() * data.length);
@@ -29,10 +28,6 @@ function App() {
         (number) => number.value === data[prizeNumber].option
       ) &&
         !mustSpin && <h3 className="win">Acertaste!</h3>}
-      {selectedNumbers
-        .map((n) => n.value)
-        .includes(data[prizeNumber].option) === false &&
-        !mustSpin && <h3 className="lose">Perdiste</h3>}
       <Wheel
         textColors={["#fff"]}
         fontSize={18}
@@ -60,23 +55,47 @@ function App() {
           <>
             <p>elegiste el/los número/s</p>
             {selectedNumbers.map((number) => (
-              <span
-                key={number.value}
-                style={{
-                  fontSize: "1.2rem",
-                  fontWeight: "bold",
-                  backgroundColor: number.color,
-                  padding: "4px 8px",
-                  borderRadius: "8px",
-                }}
-                onClick={() => {
-                  setSelectedNumbers([
-                    ...selectedNumbers.filter((n) => n.value !== number.value),
-                  ]);
-                }}
-              >
-                {number.value}
-              </span>
+              <>
+                <span
+                  key={number.value}
+                  style={{
+                    display: "inline-block",
+                    fontSize: "1.2rem",
+                    fontWeight: "bold",
+                    backgroundColor: number.color,
+                    margin: "0 0.5rem 1.8rem 0.5rem",
+                    padding: "4px 8px",
+                    borderRadius: "8px",
+                    position: "relative",
+                  }}
+                  onClick={() => {
+                    setSelectedNumbers([
+                      ...selectedNumbers.filter(
+                        (n) => n.value !== number.value
+                      ),
+                    ]);
+                  }}
+                >
+                  {number.value}
+                  <span
+                    style={{
+                      display: "block",
+                      width: "16px",
+                      height: "16px",
+                      lineHeight: "16px",
+                      backgroundColor: "white",
+                      color: "black",
+                      borderRadius: "50%",
+                      border: "3px dotted blue",
+                      position: "absolute",
+                      bottom: "-25px",
+                      left: "4px",
+                    }}
+                  >
+                    {number.bets}
+                  </span>
+                </span>
+              </>
             ))}
           </>
         ) : (
