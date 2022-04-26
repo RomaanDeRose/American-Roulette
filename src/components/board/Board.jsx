@@ -12,7 +12,6 @@ const [pair, odd] = parities;
 const [minor, major] = sizes;
 
 function Board({ selectedNumbers, setSelectedNumbers }) {
-
   const userBet = (number) => {
     if (selectedNumbers.map((n) => n.value).includes(number.value)) {
       const existedBetNumber = selectedNumbers.map((n) => {

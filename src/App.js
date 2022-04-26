@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Wheel } from "react-custom-roulette";
-import Board from "./components/board/Board";
 import { data } from "./utils/numbersRoulette";
-import { colors } from "./components/board/Board";
+import Board from "./components/board/Board";
+import HistorialBets from "./components/historialBets/HistorialBets";
+// import { colors } from "./components/board/Board";
 import "./App.css";
 
 function App() {
@@ -15,12 +16,11 @@ function App() {
 
   // Índice número ganador
   const [prizeNumber, setPrizeNumber] = useState(20);
-  
+
   // Números seleccionados
   const [selectedNumbers, setSelectedNumbers] = useState([]);
 
-  const [lastNumber, setLastNumber] = useState({value: null, color: null});
-
+  const [lastNumber, setLastNumber] = useState({ value: null, color: null });
 
   const handleSpinClick = () => {
     const newPrizeNumber = Math.floor(Math.random() * data.length);
@@ -29,31 +29,29 @@ function App() {
   };
 
   const checkBets = () => {
-    setIsHitBet(selectedNumbers.some(
-      number => number.value === data[prizeNumber].option
-    ));
-  }
+    setIsHitBet(
+      selectedNumbers.some(
+        (number) => number.value === data[prizeNumber].option
+      )
+    );
+  };
 
-  // Ex numberBet
-  const winNumber = (
-    <span style={{ backgroundColor: data[prizeNumber].style.backgroundColor }}>
-      {data[prizeNumber].option}
-    </span>
-  );
+  // // Ex numberBet
+  // const winNumber = (
+  //   <span style={{ backgroundColor: data[prizeNumber].style.backgroundColor }}>
+  //     {data[prizeNumber].option}
+  //   </span>
+  // );
 
-  
-
-
-  const resultMessage = (
-    <h3 className="win">Acertaste!</h3>
-  );
-
+  const resultMessage = <h3 className="win">Acertaste!</h3>;
 
   return (
     <div className="App">
       <h1 className="title">Ruleta Europea!</h1>
 
-      { isHitBet && !mustSpin && resultMessage}
+      {isHitBet && !mustSpin && resultMessage}
+
+      <HistorialBets lastNumber={lastNumber} />
 
       <Wheel
         textColors={["#fff"]}
@@ -71,10 +69,13 @@ function App() {
         data={data}
         onStopSpinning={() => {
           setMustSpin(false);
-          console.log('Verificando apuestas...');
+          console.log("Verificando apuestas...");
           setIsFirstSpin(false);
           checkBets();
-          setLastNumber({value: data[prizeNumber].option, color: data[prizeNumber].style.backgroundColor});
+          setLastNumber({
+            value: data[prizeNumber].option,
+            color: data[prizeNumber].style.backgroundColor,
+          });
         }}
       />
 
@@ -84,7 +85,14 @@ function App() {
         {!mustSpin && <>Último número: {winNumber}</>}
       </h2> */}
 
-      {isFirstSpin || <h2 >Último número: <span style={{backgroundColor: lastNumber.color}}>{lastNumber.value}</span></h2>}
+      {isFirstSpin || (
+        <h2>
+          Último número:{" "}
+          <span style={{ backgroundColor: lastNumber.color }}>
+            {lastNumber.value}
+          </span>
+        </h2>
+      )}
 
       {!mustSpin || <h2>ruleta girando...</h2>}
 
