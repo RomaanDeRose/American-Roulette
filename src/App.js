@@ -1,12 +1,21 @@
 import React, { useState } from "react";
 import { Wheel } from "react-custom-roulette";
-import Board from "./components/Board";
+import Board from "./components/board/Board";
 import { data } from "./utils/numbersRoulette";
 import "./App.css";
 
 function App() {
+  const [isFirstSpin, setIsFirstSpin] = useState(true);
+
+  const [isHitBet, setIsHitBet] = useState(false);
+
+  // Ruleta girando boolean
   const [mustSpin, setMustSpin] = useState(false);
-  const [prizeNumber, setPrizeNumber] = useState(32);
+
+  // Índice número ganador
+  const [prizeNumber, setPrizeNumber] = useState(20);
+  
+  // Números seleccionados
   const [selectedNumbers, setSelectedNumbers] = useState([]);
 
   const handleSpinClick = () => {
@@ -15,19 +24,33 @@ function App() {
     setMustSpin(true);
   };
 
-  const numberBet = (
+  const checkBets = () => {
+    setIsHitBet(selectedNumbers.some(
+      number => number.value === data[prizeNumber].option
+    ));
+  }
+
+
+  // Ex numberBet
+  const winNumber = (
     <span style={{ backgroundColor: data[prizeNumber].style.backgroundColor }}>
       {data[prizeNumber].option}
     </span>
   );
 
+
+  const resultMessage = (
+    <h3 className="win">Acertaste!</h3>
+  );
+
+
+  console.log(isFirstSpin);
+
+
   return (
     <div className="App">
       <h2 className="title">Ruleta Europea!</h2>
-      {selectedNumbers.some(
-        (number) => number.value === data[prizeNumber].option
-      ) &&
-        !mustSpin && <h3 className="win">Acertaste!</h3>}
+      { isHitBet && !mustSpin && resultMessage}
       <Wheel
         textColors={["#fff"]}
         fontSize={18}
@@ -44,11 +67,14 @@ function App() {
         data={data}
         onStopSpinning={() => {
           setMustSpin(false);
+          console.log('Verificando apuestas...');
+          setIsFirstSpin(false);
+          checkBets();
         }}
       />
       <button onClick={handleSpinClick}>SPIN</button>
-      <h2>
-        {!mustSpin ? <>Último número: {numberBet}</> : "ruleta girando..."}
+      <h2 style={{display: isFirstSpin && 'none'}}>
+        {!mustSpin ? <>Último número: {winNumber}</> : "ruleta girando..."}
       </h2>
       <p>
         {selectedNumbers.length > 0 ? (
@@ -99,7 +125,7 @@ function App() {
             ))}
           </>
         ) : (
-          "No has seleccionado ningun numero"
+          "No has seleccionado ningún número, cagón"
         )}
       </p>
       <Board

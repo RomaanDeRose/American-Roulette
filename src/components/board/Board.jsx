@@ -1,5 +1,5 @@
 import "./Board.scss";
-import { numbers, chances } from "../utils/numbers";
+import { numbers, chances } from "../../utils/numbers";
 
 const [zero, ...restNumbers] = numbers;
 const colors = [chances[0], chances[1]];
@@ -12,10 +12,6 @@ const [pair, odd] = parities;
 const [minor, major] = sizes;
 
 function Board({ selectedNumbers, setSelectedNumbers }) {
-  console.log(selectedNumbers);
-  console.log(chances);
-  console.log(dozens);
-  console.log(colors, parities, sizes);
 
   const userBet = (number) => {
     if (selectedNumbers.map((n) => n.value).includes(number.value)) {
