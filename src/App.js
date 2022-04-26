@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Wheel } from "react-custom-roulette";
 import Board from "./components/board/Board";
 import { data } from "./utils/numbersRoulette";
+import { colors } from "./components/board/Board";
 import "./App.css";
 
 function App() {
@@ -18,6 +19,9 @@ function App() {
   // Números seleccionados
   const [selectedNumbers, setSelectedNumbers] = useState([]);
 
+  const [lastNumber, setLastNumber] = useState({value: null, color: null});
+
+
   const handleSpinClick = () => {
     const newPrizeNumber = Math.floor(Math.random() * data.length);
     setPrizeNumber(newPrizeNumber);
@@ -30,7 +34,6 @@ function App() {
     ));
   }
 
-
   // Ex numberBet
   const winNumber = (
     <span style={{ backgroundColor: data[prizeNumber].style.backgroundColor }}>
@@ -38,19 +41,20 @@ function App() {
     </span>
   );
 
+  
+
 
   const resultMessage = (
     <h3 className="win">Acertaste!</h3>
   );
 
 
-  console.log(isFirstSpin);
-
-
   return (
     <div className="App">
-      <h2 className="title">Ruleta Europea!</h2>
+      <h1 className="title">Ruleta Europea!</h1>
+
       { isHitBet && !mustSpin && resultMessage}
+
       <Wheel
         textColors={["#fff"]}
         fontSize={18}
@@ -70,12 +74,20 @@ function App() {
           console.log('Verificando apuestas...');
           setIsFirstSpin(false);
           checkBets();
+          setLastNumber({value: data[prizeNumber].option, color: data[prizeNumber].style.backgroundColor});
         }}
       />
+
       <button onClick={handleSpinClick}>SPIN</button>
-      <h2 style={{display: isFirstSpin && 'none'}}>
-        {!mustSpin ? <>Último número: {winNumber}</> : "ruleta girando..."}
-      </h2>
+
+      {/* <h2 style={{display: isFirstSpin && 'none'}}>
+        {!mustSpin && <>Último número: {winNumber}</>}
+      </h2> */}
+
+      {isFirstSpin || <h2 >Último número: <span style={{backgroundColor: lastNumber.color}}>{lastNumber.value}</span></h2>}
+
+      {!mustSpin || <h2>ruleta girando...</h2>}
+
       <p>
         {selectedNumbers.length > 0 ? (
           <>

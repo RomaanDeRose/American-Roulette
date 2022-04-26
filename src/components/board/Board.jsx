@@ -2,7 +2,7 @@ import "./Board.scss";
 import { numbers, chances } from "../../utils/numbers";
 
 const [zero, ...restNumbers] = numbers;
-const colors = [chances[0], chances[1]];
+export const colors = [chances[0], chances[1]];
 const parities = [chances[2], chances[3]];
 const sizes = [chances[4], chances[5]];
 const dozens = [chances[6], chances[7], chances[8]];
