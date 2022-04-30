@@ -1,5 +1,7 @@
-import "./Board.scss";
+import { useAudio } from "../../hooks/useAudio";
+import Fichas from "../../assets/audio/fichas-roulette.mp3";
 import { numbers, chances } from "../../utils/numbers";
+import "./Board.scss";
 
 const [zero, ...restNumbers] = numbers;
 export const colors = [chances[0], chances[1]];
@@ -12,6 +14,8 @@ const [pair, odd] = parities;
 const [minor, major] = sizes;
 
 function Board({ selectedNumbers, setSelectedNumbers }) {
+  const [toggle] = useAudio(Fichas, 1.7);
+
   const userBet = (number) => {
     if (selectedNumbers.map((n) => n.value).includes(number.value)) {
       const existedBetNumber = selectedNumbers.map((n) => {
@@ -34,6 +38,7 @@ function Board({ selectedNumbers, setSelectedNumbers }) {
         },
       ]);
     }
+    toggle();
   };
 
   return (

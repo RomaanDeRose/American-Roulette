@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { Wheel } from "react-custom-roulette";
 import { data } from "./utils/numbersRoulette";
+import { useAudio } from "./hooks/useAudio";
 import Board from "./components/board/Board";
 import HistorialBets from "./components/historialBets/HistorialBets";
+import Ruleta from "./assets/audio/roullette.mp3";
 // import { colors } from "./components/board/Board";
 import "./App.css";
 
 function App() {
+  const [toggle] = useAudio(Ruleta);
+
   const [isFirstSpin, setIsFirstSpin] = useState(true);
 
   const [isHitBet, setIsHitBet] = useState(false);
@@ -26,6 +30,7 @@ function App() {
     const newPrizeNumber = Math.floor(Math.random() * data.length);
     setPrizeNumber(newPrizeNumber);
     setMustSpin(true);
+    toggle();
   };
 
   const checkBets = () => {
@@ -57,19 +62,19 @@ function App() {
         textColors={["#fff"]}
         fontSize={18}
         textDistance={79}
-        outerBorderColor={["#000"]}
+        outerBorderColor={["#2F1D18"]}
         outerBorderWidth={15}
         innerRadius={55}
-        innerBorderColor={["#000"]}
+        innerBorderColor={["#2F1D18"]}
         innerBorderWidth={20}
         radiusLineColor={"#e6b219"}
         radiusLineWidth={2}
+        spinDuration={0.63}
         mustStartSpinning={mustSpin}
         prizeNumber={prizeNumber}
         data={data}
         onStopSpinning={() => {
           setMustSpin(false);
-          console.log("Verificando apuestas...");
           setIsFirstSpin(false);
           checkBets();
           setLastNumber({
