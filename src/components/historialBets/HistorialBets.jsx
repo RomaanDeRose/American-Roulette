@@ -5,14 +5,13 @@ function HistorialBets({ lastNumber }) {
   const [allNumber, setAllNumber] = useState([]);
 
   useEffect(() => {
-    lastNumber.value && lastNumber.color
+    lastNumber.value !== null && lastNumber.color !== null
       ? setAllNumber([...allNumber, lastNumber])
       : setAllNumber([]);
   }, [lastNumber]);
 
   return (
     <div className="historial-bets">
-      <h3>Historial de apuestas</h3>
       <div className="historialContainer">
         <div className="historialContainer--show">
           {allNumber.length > 0 ? (
@@ -21,7 +20,15 @@ function HistorialBets({ lastNumber }) {
                 <div key={index} className="historialContainer--show--number">
                   <span
                     style={{
-                      backgroundColor: number.color,
+                      textAlign:
+                        number.color === "#000700"
+                          ? "start"
+                          : number.color === "#318D42"
+                          ? "center"
+                          : number.color === "#E31C2E"
+                          ? "end"
+                          : "none",
+                      color: number.color,
                     }}
                   >
                     {number.value}

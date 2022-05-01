@@ -14,7 +14,7 @@ const [pair, odd] = parities;
 const [minor, major] = sizes;
 
 function Board({ selectedNumbers, setSelectedNumbers }) {
-  const [toggle] = useAudio(Fichas, 1.7);
+  const [toggle] = useAudio(Fichas, 2);
 
   const userBet = (number) => {
     if (selectedNumbers.map((n) => n.value).includes(number.value)) {
@@ -46,6 +46,7 @@ function Board({ selectedNumbers, setSelectedNumbers }) {
       <div className="container">
         <span
           className="number number--zero"
+          style={{ cursor: "pointer" }}
           onClick={() => userBet({ value: 0, color: "green", bets: 0 })}
         >
           {zero.value}
@@ -58,7 +59,6 @@ function Board({ selectedNumbers, setSelectedNumbers }) {
               style={{ background: number.color }}
               onClick={() => {
                 userBet(number);
-                console.log(number, number.value);
               }}
             >
               {number.value}

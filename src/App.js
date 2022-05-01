@@ -41,19 +41,10 @@ function App() {
     );
   };
 
-  // // Ex numberBet
-  // const winNumber = (
-  //   <span style={{ backgroundColor: data[prizeNumber].style.backgroundColor }}>
-  //     {data[prizeNumber].option}
-  //   </span>
-  // );
-
   const resultMessage = <h3 className="win">Acertaste!</h3>;
 
   return (
     <div className="App">
-      <h1 className="title">Ruleta Europea!</h1>
-
       {isHitBet && !mustSpin && resultMessage}
 
       <HistorialBets lastNumber={lastNumber} />
@@ -69,7 +60,7 @@ function App() {
         innerBorderWidth={20}
         radiusLineColor={"#e6b219"}
         radiusLineWidth={2}
-        spinDuration={0.63}
+        spinDuration={0.64}
         mustStartSpinning={mustSpin}
         prizeNumber={prizeNumber}
         data={data}

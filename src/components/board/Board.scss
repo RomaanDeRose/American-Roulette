@@ -1,61 +1,60 @@
 #Board {
-    margin: 1.5rem;
-    font-size: 1.4rem;
-    color: white;
-    .container {
-        display: grid;
-        grid-template-columns: .5fr 12fr 1fr;
+  margin: 1.5rem;
+  font-size: 1.4rem;
+  color: white;
+  .container {
+    display: grid;
+    grid-template-columns: 0.5fr 12fr 1fr;
+  }
+  .number {
+    border: 1px solid white;
+    font-size: 1.8rem;
+    $commonNumberHeight: 30px;
+    min-height: $commonNumberHeight;
+    line-height: $commonNumberHeight;
+    &--zero {
+      line-height: $commonNumberHeight * 3 + 6;
+      background-color: green;
     }
+  }
+
+  .common-numbers {
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(12, 1fr);
+    cursor: pointer;
     .number {
-        border: 1px solid white;
-        font-size: 1.8rem;
-        $commonNumberHeight: 30px;
-        min-height: $commonNumberHeight;
-        line-height: $commonNumberHeight;
-        &--zero {
-            line-height: $commonNumberHeight * 3 + 6;
-            background-color: green;
-        }
+      &:nth-of-type(3n) {
+        grid-row: 1;
+      }
+      &:nth-of-type(3n + 2) {
+        grid-row: 2;
+      }
+      &:nth-of-type(3n + 1) {
+        grid-row: 3;
+      }
     }
+  }
 
-    .common-numbers {
-        display: grid;
-        grid-template: repeat(3, 1fr) / repeat(12, 1fr);
-        cursor: pointer;
-        .number {
-            &:nth-of-type(3n) {
-            grid-row: 1;
-            }
-            &:nth-of-type(3n + 2) {
-            grid-row: 2;
-            }
-            &:nth-of-type(3n + 1) {
-            grid-row: 3;
-            }
-        }
+  .columns {
+    display: flex;
+    flex-direction: column;
+    .column {
+      flex-grow: 1;
     }
+  }
 
-    .columns {
-        display: flex;
-        flex-direction: column;
-        .column {
-            flex-grow: 1;
-        }
+  .dozens {
+    grid-column: 2;
+    display: flex;
+    .dozen {
+      flex-grow: 1;
     }
+  }
 
-    .dozens {
-        grid-column: 2;
-        display: flex;
-        .dozen {
-            flex-grow: 1;
-        }
+  .double-chances {
+    @extend .dozens;
+    .chance {
+      flex-grow: 1;
     }
-
-    .double-chances {
-        @extend .dozens;
-        .chance {
-            flex-grow: 1;
-        }
-    }
-
+  }
 }
