@@ -4,7 +4,7 @@ import { numbers, chances } from "../../utils/numbers";
 import "./Board.scss";
 
 const [zero, ...restNumbers] = numbers;
-export const colors = [chances[0], chances[1]];
+const colors = [chances[0], chances[1]];
 const parities = [chances[2], chances[3]];
 const sizes = [chances[4], chances[5]];
 const dozens = [chances[6], chances[7], chances[8]];
@@ -16,7 +16,34 @@ const [minor, major] = sizes;
 function Board({ selectedNumbers, setSelectedNumbers }) {
   const [toggle] = useAudio(Fichas, 2);
 
-  const userBet = (number) => {
+  const userChanceBet = (chance, numbers) => {
+
+    
+    numbers.forEach(number => {
+      number.bets++;
+    })
+    
+    const isBet = chance.bets === 0;
+    
+    chance.bets++;
+    
+    console.log(chance)
+    if (isBet) {
+      setSelectedNumbers([
+        ...selectedNumbers,
+        ...numbers
+      ]);
+    } else {
+      setSelectedNumbers([
+        ...selectedNumbers
+      ]);
+    }
+
+    
+
+  }
+
+  const userFullBet = (number) => {
     if (selectedNumbers.map((n) => n.value).includes(number.value)) {
       const existedBetNumber = selectedNumbers.map((n) => {
         if (n.value === number.value) {
@@ -47,7 +74,7 @@ function Board({ selectedNumbers, setSelectedNumbers }) {
         <span
           className="number number--zero"
           style={{ cursor: "pointer" }}
-          onClick={() => userBet({ value: 0, color: "green", bets: 0 })}
+          onClick={() => userFullBet({ value: 0, color: "green", bets: 0 })}
         >
           {zero.value}
         </span>
@@ -58,7 +85,7 @@ function Board({ selectedNumbers, setSelectedNumbers }) {
               key={number.value}
               style={{ background: number.color }}
               onClick={() => {
-                userBet(number);
+                userFullBet(number);
               }}
             >
               {number.value}
@@ -66,29 +93,29 @@ function Board({ selectedNumbers, setSelectedNumbers }) {
           ))}
         </div>
         <div className="columns">
-          {columns.map((column) => (
-            <span className="column" key={column.name}>
-              {column.name} 2:1
+          {columns.map((column, i) => (
+            <span className="column" key={column.name} onClick={() => { userChanceBet(columns[columns.length + (-i-1)], columns[columns.length + (-i-1)].numbers); }}>
+              {column.name} 2:1, {i}
             </span>
           ))}
         </div>
         <div className="dozens">
-          {dozens.map((dozen) => (
-            <span className="dozen" key={dozen.name}>
+          {dozens.map((dozen, i) => (
+            <span className="dozen" key={dozen.name} onClick={() => { userChanceBet(dozen, dozen.numbers); }}>
               {dozen.name} 2:1
             </span>
           ))}
         </div>
         <div className="double-chances">
-          <span className="chance chance__size">{minor.name}</span>
-          <span className="chance chance__parity">{pair.name}</span>
-          {colors.map((color) => (
-            <span className="chance chance__color" key={color.name}>
+          <span className="chance chance__size" onClick={() => { userChanceBet(minor, minor.numbers); }}>{minor.name}</span>
+          <span className="chance chance__parity" onClick={() => { userChanceBet(pair, minor.numbers); }}>{pair.name}</span>
+          {colors.map((color, i) => (
+            <span className="chance chance__color" key={color.name} onClick={() => { userChanceBet(color, color.numbers); }}>
               {color.name}
             </span>
           ))}
-          <span className="chance chance__parity">{odd.name}</span>
-          <span className="chance chance__size">{major.name}</span>
+          <span className="chance chance__parity" onClick={() => { userChanceBet(odd, odd.numbers); }}>{odd.name}</span>
+          <span className="chance chance__size" onClick={() => { userChanceBet(major, major.numbers); }}>{major.name}</span>
         </div>
       </div>
     </div>
