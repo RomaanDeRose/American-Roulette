@@ -95,7 +95,7 @@ function Board({ selectedNumbers, setSelectedNumbers }) {
         <div className="columns">
           {columns.map((column, i) => (
             <span className="column" key={column.name} onClick={() => { userChanceBet(columns[columns.length + (-i-1)], columns[columns.length + (-i-1)].numbers); }}>
-              {column.name} 2:1, {i}
+              {column.name} 2:1
             </span>
           ))}
         </div>

@@ -98,17 +98,11 @@ function App() {
             <p>elegiste el/los número/s</p>
             {selectedNumbers.map((number) => (
               <>
-                <span
+                <span 
                   key={number.value}
+                  className="selected-number"
                   style={{
-                    display: "inline-block",
-                    fontSize: "1.2rem",
-                    fontWeight: "bold",
-                    backgroundColor: number.color,
-                    margin: "0 0.5rem 1.8rem 0.5rem",
-                    padding: "4px 8px",
-                    borderRadius: "8px",
-                    position: "relative",
+                    backgroundColor: number.color
                   }}
                   onClick={() => {
                     setSelectedNumbers([
@@ -120,19 +114,7 @@ function App() {
                 >
                   {number.value}
                   <span
-                    style={{
-                      display: "block",
-                      width: "16px",
-                      height: "16px",
-                      lineHeight: "16px",
-                      backgroundColor: "white",
-                      color: "black",
-                      borderRadius: "50%",
-                      border: "3px dotted blue",
-                      position: "absolute",
-                      bottom: "-25px",
-                      left: "4px",
-                    }}
+                    className="chip"
                   >
                     {number.bets}
                   </span>
