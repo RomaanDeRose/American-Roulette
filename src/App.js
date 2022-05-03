@@ -17,11 +17,8 @@ function App() {
   return (
     <div className="App">
       <CasinoContext.Provider value={data}>
-        <Roulette type={rouletteTypes[0]}/>
-        <Board
-          // selectedNumbers={selectedNumbers}
-          // setSelectedNumbers={setSelectedNumbers}
-        />
+        <Roulette/>
+        <Board/>
       </CasinoContext.Provider>
     </div>
   );
