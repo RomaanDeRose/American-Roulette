@@ -1,15 +1,20 @@
-import { useEffect, useState, useReducer } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Wheel } from "react-custom-roulette";
 import { data } from "../../utils/numbersRoulette";
 import { useAudio } from "../../hooks/useAudio";
 import Ruleta from "../../assets/audio/roullette.mp3";
 import HistorialBets from "../historialBets/HistorialBets";
+import CasinoContext from "../../contexts/CasinoContext";
+import {changeType, translateType} from '../../utils/rouletteTypes.services';
 
-function Roulette({ type }) {
+function Roulette() {
+
+    const {selectedNumbers, setSelectedNumbers, rouletteTypes, setRouletteType} = useContext(CasinoContext);
 
     const [toggle] = useAudio(Ruleta);
 
     const [rouletteData, setRouletteData] = useState(data);
+
 
     const [isFirstSpin, setIsFirstSpin] = useState(true);
   
@@ -21,22 +26,20 @@ function Roulette({ type }) {
     // Índice número ganador
     const [prizeNumber, setPrizeNumber] = useState(20);
   
-    // Números seleccionados
-    const [selectedNumbers, setSelectedNumbers] = useState([]);
-  
     const [lastNumber, setLastNumber] = useState({ value: null, color: null });
-  
+
+    
     const handleSpinClick = () => {
-      const newPrizeNumber = Math.floor(Math.random() * data.length);
-      setPrizeNumber(newPrizeNumber);
-      setMustSpin(true);
-      toggle();
+        const newPrizeNumber = Math.floor(Math.random() * rouletteData.length);
+        setPrizeNumber(newPrizeNumber);
+        setMustSpin(true);
+        toggle();
     };
   
     const checkBets = () => {
       setIsHitBet(
         selectedNumbers.some(
-          (number) => number.value === data[prizeNumber].option
+          (number) => number.value === rouletteData[prizeNumber].option
         )
       );
     };
@@ -44,17 +47,21 @@ function Roulette({ type }) {
     const resultMessage = <h3 className="win">Acertaste!</h3>;
 
     useEffect(() => {
-        if(type === "american") {
-            setRouletteData([...data.splice(19, 0, { option: '00', style: { backgroundColor: "#318D42" } })])
+        const [ actualType ] = rouletteTypes;
+        if(actualType === "american") {
+            data.splice(19, 0, { option: '00', style: { backgroundColor: "#318D42" } });
+            setRouletteData([...data])
         } else {
             if (data.length === 38) {
-                setRouletteData([...data.splice(19, 1)])
+                data.splice(19, 1);
+                setRouletteData([...data])
             }
         }
-    }, [type])
+    }, [rouletteTypes])
     
     return (
         <>
+            <button onClick={ () => changeType(rouletteTypes, setRouletteType) }>Cambiar a Ruleta { translateType(rouletteTypes[1]) }</button>
             { isHitBet && !mustSpin && resultMessage }
 
             <HistorialBets lastNumber={lastNumber} />
@@ -72,14 +79,14 @@ function Roulette({ type }) {
                 spinDuration={0.64}
                 mustStartSpinning={mustSpin}
                 prizeNumber={prizeNumber}
-                data={data}
+                data={rouletteData}
                 onStopSpinning={() => {
                 setMustSpin(false);
                 setIsFirstSpin(false);
                 checkBets();
                 setLastNumber({
-                    value: data[prizeNumber].option,
-                    color: data[prizeNumber].style.backgroundColor,
+                    value: rouletteData[prizeNumber].option,
+                    color: rouletteData[prizeNumber].style.backgroundColor,
                 });
                 }}
             />

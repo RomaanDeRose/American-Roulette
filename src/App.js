@@ -4,34 +4,25 @@ import Board from "./components/board/Board";
 
 import "./App.css";
 import Roulette from "./components/roulette/Roulette";
+import CasinoContext from "./contexts/CasinoContext";
 
 function App() {
 
+  const [selectedNumbers, setSelectedNumbers] = useState([]);
+  
   const [rouletteTypes, setRouletteType] = useState(["american", "european"]);
 
-  function translateType(rouletteType) {
-    switch (rouletteType) {
-      case "european":
-        return "Europea"
-      case "american":
-        return "Americana"    
-    }
-  }
-
-  function changeType () {
-    const invertedTypes = rouletteTypes.reverse();
-    setRouletteType([...invertedTypes]);
-    console.log(rouletteTypes);
-  }
+  const data = {selectedNumbers, setSelectedNumbers, rouletteTypes, setRouletteType};
 
   return (
     <div className="App">
-      <button onClick={ changeType }>Cambiar a Ruleta { translateType(rouletteTypes[1]) }</button>
-      <Roulette type={rouletteTypes[0]}/>
-      <Board
-        // selectedNumbers={selectedNumbers}
-        // setSelectedNumbers={setSelectedNumbers}
-      />
+      <CasinoContext.Provider value={data}>
+        <Roulette type={rouletteTypes[0]}/>
+        <Board
+          // selectedNumbers={selectedNumbers}
+          // setSelectedNumbers={setSelectedNumbers}
+        />
+      </CasinoContext.Provider>
     </div>
   );
 }

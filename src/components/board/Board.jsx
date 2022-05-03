@@ -1,9 +1,9 @@
-import { useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { useAudio } from "../../hooks/useAudio";
 import Fichas from "../../assets/audio/fichas-roulette.mp3";
 import { numbers, chances } from "../../utils/numbers";
 import "./Board.scss";
-
+import CasinoContext from "../../contexts/CasinoContext";
 
 
 const [zero, ...restNumbers] = numbers;
@@ -16,7 +16,9 @@ const columns = [chances[9], chances[10], chances[11]];
 const [pair, odd] = parities;
 const [minor, major] = sizes;
 
-function Board({ selectedNumbers, setSelectedNumbers }) {
+function Board() {
+
+  const {selectedNumbers, setSelectedNumbers} = useContext(CasinoContext);
 
   const [preselectedNumbers, setPreselectedNumbers] = useState([]);
 
