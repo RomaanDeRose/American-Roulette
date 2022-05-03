@@ -12,9 +12,13 @@
     $commonNumberHeight: 30px;
     min-height: $commonNumberHeight;
     line-height: $commonNumberHeight;
+    transition: box-shadow 250ms ease-out;
     &--zero {
       line-height: $commonNumberHeight * 3 + 6;
       background-color: green;
+    }
+    &:hover, &.number--preselected {
+      box-shadow: inset 0 0 40px #fafafa;
     }
   }
 

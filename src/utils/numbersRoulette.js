@@ -36,4 +36,5 @@ export const data = [
   { option: 35, style: { backgroundColor: "#000700" } },
   { option: 3, style: { backgroundColor: "#E31C2E" } },
   { option: 26, style: { backgroundColor: "#000700" } },
+  //{ option: '00', style: { backgroundColor: "#318D42" } }
 ];

@@ -41,3 +41,29 @@ h3 {
   padding: 1rem;
   border-radius: 10px;
 }
+
+.selected-number {
+  display: inline-block;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0 0.5rem 4rem;
+  padding: 4px 8px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.chip {
+  display: block;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  border: 3px dotted blue;
+
+  position: absolute;
+  bottom: -25px;
+  left: 4px;
+
+  background-color: white;
+  color: black;
+  border-radius: 50%;
+}
