@@ -47,6 +47,8 @@ function Roulette() {
     );
   };
 
+  // const toastNumber = () => toast(lastNumber.value);
+
   const resultMessage = <h3 className="win">Acertaste!</h3>;
 
   useEffect(() => {
@@ -99,6 +101,7 @@ function Roulette() {
             value: rouletteData[prizeNumber].option,
             color: rouletteData[prizeNumber].style.backgroundColor,
           });
+          // toastNumber();
         }}
       />
       <button onClick={handleSpinClick}>SPIN</button>
@@ -147,10 +150,10 @@ function Roulette() {
           style: {
             background: lastNumber.color,
             color: "#fff",
-            fontSize: "3.2rem",
-            fontWeight: "bold",
-            borderRadius: "14px",
-            padding: "12px 18px",
+            fontSize: "4.5rem",
+            fontWeight: "800",
+            borderRadius: "15px",
+            padding: "14px 20px",
           },
         }}
       />
