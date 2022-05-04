@@ -1,17 +1,18 @@
 import React from "react";
-
-import Board from "./components/board/Board";
-
-import "./App.css";
-import Roulette from "./components/roulette/Roulette";
+import { Routes, Route } from "react-router-dom";
 import CasinoContextProvider from "./contexts/CasinoContext";
+import Home from "./components/home/Home";
+import Roulette from "./components/roulette/Roulette";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
       <CasinoContextProvider>
-        <Roulette />
-        <Board />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/:rouletteType" element={<Roulette />} />
+        </Routes>
       </CasinoContextProvider>
     </div>
   );

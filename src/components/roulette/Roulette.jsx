@@ -1,19 +1,18 @@
 import { useEffect, useState, useContext } from "react";
+import { useParams } from "react-router-dom";
 import { Wheel } from "react-custom-roulette";
 import { data } from "../../utils/numbersRoulette";
 import { useAudio } from "../../hooks/useAudio";
 import Ruleta from "../../assets/audio/roullette.mp3";
 import HistorialBets from "../historialBets/HistorialBets";
+import Board from "../board/Board";
 import { CasinoContext } from "../../contexts/CasinoContext";
-import { changeType, translateType } from "../../utils/rouletteTypes.services";
+// import { changeType, translateType } from "../../utils/rouletteTypes.services";
 
 function Roulette() {
-  const {
-    selectedNumbers,
-    setSelectedNumbers,
-    rouletteTypes,
-    setRouletteType,
-  } = useContext(CasinoContext);
+  const { selectedNumbers, setSelectedNumbers } = useContext(CasinoContext);
+
+  const { rouletteType } = useParams();
 
   const [toggle] = useAudio(Ruleta);
 
@@ -49,26 +48,29 @@ function Roulette() {
   const resultMessage = <h3 className="win">Acertaste!</h3>;
 
   useEffect(() => {
-    const [actualType] = rouletteTypes;
-    if (actualType === "american") {
-      data.splice(19, 0, {
-        option: "00",
-        style: { backgroundColor: "#318D42" },
-      });
-      setRouletteData([...data]);
+    // const [actualType] = rouletteTypes;
+    if (rouletteType === "american") {
+      if (data.length === 37) {
+        data.splice(19, 0, {
+          option: "00",
+          style: { backgroundColor: "#318D42" },
+        });
+        setRouletteData([...data]);
+      }
     } else {
       if (data.length === 38) {
         data.splice(19, 1);
         setRouletteData([...data]);
       }
     }
-  }, [rouletteTypes]);
+  }, [rouletteType]);
 
+  console.log(data.length);
   return (
     <>
-      <button onClick={() => changeType(rouletteTypes, setRouletteType)}>
+      {/* <button onClick={() => changeType(rouletteTypes, setRouletteType)}>
         Cambiar a Ruleta {translateType(rouletteTypes[1])}
-      </button>
+      </button> */}
       {isHitBet && !mustSpin && resultMessage}
 
       <HistorialBets lastNumber={lastNumber} />
@@ -139,6 +141,7 @@ function Roulette() {
           "No has seleccionado ningún número, cagón"
         )}
       </p>
+      <Board />
     </>
   );
 }
