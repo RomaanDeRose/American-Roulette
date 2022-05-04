@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 import { Wheel } from "react-custom-roulette";
 import { data } from "../../utils/numbersRoulette";
 import { useAudio } from "../../hooks/useAudio";
@@ -29,6 +30,7 @@ function Roulette() {
   const [prizeNumber, setPrizeNumber] = useState(20);
 
   const [lastNumber, setLastNumber] = useState({ value: null, color: null });
+  console.log(lastNumber);
 
   const handleSpinClick = () => {
     const newPrizeNumber = Math.floor(Math.random() * rouletteData.length);
@@ -100,13 +102,9 @@ function Roulette() {
         }}
       />
       <button onClick={handleSpinClick}>SPIN</button>
-      {isFirstSpin || (
-        <h2>
-          Último número:{" "}
-          <span style={{ backgroundColor: lastNumber.color }}>
-            {lastNumber.value}
-          </span>
-        </h2>
+
+      {!isFirstSpin && (
+        <span style={{ color: "transparent" }}>{toast(lastNumber.value)}</span>
       )}
 
       {!mustSpin || <h2>ruleta girando...</h2>}
@@ -142,6 +140,20 @@ function Roulette() {
         )}
       </p>
       <Board />
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          duration: 2000,
+          style: {
+            background: lastNumber.color,
+            color: "#fff",
+            fontSize: "3.2rem",
+            fontWeight: "bold",
+            borderRadius: "14px",
+            padding: "12px 18px",
+          },
+        }}
+      />
     </>
   );
 }
