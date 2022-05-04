@@ -101,14 +101,14 @@ function Roulette() {
             value: rouletteData[prizeNumber].option,
             color: rouletteData[prizeNumber].style.backgroundColor,
           });
-          // toastNumber();
+          toast(rouletteData[prizeNumber].option);
         }}
       />
       <button onClick={handleSpinClick}>SPIN</button>
 
-      {!isFirstSpin && (
+      {/* {!isFirstSpin && (
         <span style={{ color: "transparent" }}>{toast(lastNumber.value)}</span>
-      )}
+      )} */}
 
       {!mustSpin || <h2>ruleta girando...</h2>}
 
@@ -144,16 +144,16 @@ function Roulette() {
       </p>
       <Board />
       <Toaster
-        position="top-center"
+        position="top-left"
         toastOptions={{
           duration: 2000,
           style: {
             background: lastNumber.color,
             color: "#fff",
-            fontSize: "4.5rem",
-            fontWeight: "800",
-            borderRadius: "15px",
-            padding: "14px 20px",
+            fontSize: "6rem",
+            fontWeight: "900",
+            borderRadius: "20px",
+            padding: "18px 25px",
           },
         }}
       />
