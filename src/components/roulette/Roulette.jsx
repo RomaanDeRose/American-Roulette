@@ -8,6 +8,7 @@ import Ruleta from "../../assets/audio/roullette.mp3";
 import HistorialBets from "../historialBets/HistorialBets";
 import Board from "../board/Board";
 import { CasinoContext } from "../../contexts/CasinoContext";
+import BoardContextProvider from "../../contexts/BoardContext";
 // import { changeType, translateType } from "../../utils/rouletteTypes.services";
 
 function Roulette() {
@@ -30,7 +31,6 @@ function Roulette() {
   const [prizeNumber, setPrizeNumber] = useState(20);
 
   const [lastNumber, setLastNumber] = useState({ value: null, color: null });
-  console.log(lastNumber);
 
   const handleSpinClick = () => {
     const newPrizeNumber = Math.floor(Math.random() * rouletteData.length);
@@ -69,7 +69,6 @@ function Roulette() {
     }
   }, [rouletteType]);
 
-  console.log(data.length);
   return (
     <>
       {/* <button onClick={() => changeType(rouletteTypes, setRouletteType)}>
@@ -142,7 +141,11 @@ function Roulette() {
           "No has seleccionado ningún número, cagón"
         )}
       </p>
-      <Board />
+
+      <BoardContextProvider>
+        <Board />
+      </BoardContextProvider>
+
       <Toaster
         position="top-left"
         toastOptions={{

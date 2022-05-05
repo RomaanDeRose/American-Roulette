@@ -39,15 +39,15 @@
     }
   }
 
-  .columns {
+  #columns {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     .column {
       flex-grow: 1;
     }
   }
 
-  .dozens {
+  #dozens {
     grid-column: 2;
     display: flex;
     .dozen {
@@ -56,7 +56,7 @@
   }
 
   .double-chances {
-    @extend .dozens;
+    @extend #dozens;
     .chance {
       flex-grow: 1;
     }

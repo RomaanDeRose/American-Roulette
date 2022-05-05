@@ -1,24 +1,27 @@
 import { useContext, useState } from "react";
 import { useAudio } from "../../hooks/useAudio";
 import Fichas from "../../assets/audio/fichas-roulette.mp3";
-import { numbers, chances } from "../../utils/numbers";
+import { numbers, chances, columns } from "../../utils/numbers";
 import "./Board.scss";
+import Columns from "./components/chances/triples/Columns";
+import Dozens from "./components/chances/triples/Dozens";
 import { CasinoContext } from "../../contexts/CasinoContext";
+import { BoardContext } from "../../contexts/BoardContext"
 
 const [zero, ...restNumbers] = numbers;
 const colors = [chances[0], chances[1]];
 const parities = [chances[2], chances[3]];
 const sizes = [chances[4], chances[5]];
 const dozens = [chances[6], chances[7], chances[8]];
-const columns = [chances[9], chances[10], chances[11]];
 
 const [pair, odd] = parities;
 const [minor, major] = sizes;
 
 function Board() {
+
   const { selectedNumbers, setSelectedNumbers } = useContext(CasinoContext);
 
-  const [preselectedNumbers, setPreselectedNumbers] = useState([]);
+  const { preselectedNumbers, setPreselectedNumbers } = useContext(BoardContext);
 
   const [toggle] = useAudio(Fichas, 2);
 
@@ -31,7 +34,6 @@ function Board() {
 
     chance.bets++;
 
-    console.log(chance);
     if (isBet) {
       setSelectedNumbers([...selectedNumbers, ...numbers]);
     } else {
@@ -67,11 +69,11 @@ function Board() {
   function handleHover(numbers) {
     const values = numbers.map((number) => number.value);
     setPreselectedNumbers([...values]);
-    console.log(values, preselectedNumbers);
   }
 
   return (
     <div id="Board">
+      
       <div className="container">
         <span
           className="number number--zero"
@@ -102,42 +104,9 @@ function Board() {
           ))}
         </div>
 
-        <div className="columns">
-          {columns.map((column, i) => (
-            <span
-              className="column"
-              key={column.name}
-              onClick={() => {
-                userChanceBet(
-                  columns[columns.length + (-i - 1)],
-                  columns[columns.length + (-i - 1)].numbers
-                );
-              }}
-              onMouseOver={() =>
-                handleHover(columns[columns.length + (-i - 1)].numbers)
-              }
-              onMouseLeave={() => handleHover([])}
-            >
-              {column.name} 2:1
-            </span>
-          ))}
-        </div>
+        <Columns />
 
-        <div className="dozens">
-          {dozens.map((dozen, i) => (
-            <span
-              className="dozen"
-              key={dozen.name}
-              onClick={() => {
-                userChanceBet(dozen, dozen.numbers);
-              }}
-              onMouseOver={() => handleHover(dozen.numbers)}
-              onMouseLeave={() => handleHover([])}
-            >
-              {dozen.name} 2:1
-            </span>
-          ))}
-        </div>
+        <Dozens/>
 
         <div className="double-chances">
           <span

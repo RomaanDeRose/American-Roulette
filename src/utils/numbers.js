@@ -193,21 +193,21 @@ const major = {
 }
 
 const dozen1 = {
-    name: 'first dozen',
+    name: '1st',
     numbers: [],
     ratio: 3,
     bets: 0
 }
 
 const dozen2 = {
-    name: 'second dozen',
+    name: '2nd',
     numbers: [],
     ratio: 3,
     bets: 0
 }
 
 const dozen3 = {
-    name: 'third dozen',
+    name: '3rd',
     numbers: [],
     ratio: 3,
     bets: 0
@@ -234,7 +234,11 @@ const column3 = {
     bets: 0
 }
 
-const chances = [red, black, pair, odd, minor, major, dozen1, dozen2, dozen3, column1, column2, column3];
+const dozens = [dozen1, dozen2, dozen3];
+
+const columns = [column1, column2, column3];
+
+const chances = [red, black, pair, odd, minor, major, ...dozens, ...columns];
 
 for (let i = 1; i < numbers.length; i++) {
     const number = numbers[i];
@@ -276,4 +280,4 @@ for (let i = 1; i < numbers.length; i++) {
     }
 }
 
-export {numbers, chances};
+export {numbers, chances, dozens, columns};
