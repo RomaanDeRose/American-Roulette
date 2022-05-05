@@ -110,7 +110,7 @@ function Board() {
         <div className="double-chances">
           <span
             className="chance chance__size"
-            // onClick={() => {
+            // onClick={() => { 
             //   userChanceBet(minor, minor.numbers);
             // }}
             onMouseOver={() => handleHover(minor.numbers)}
