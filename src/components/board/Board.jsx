@@ -3,8 +3,8 @@ import { useAudio } from "../../hooks/useAudio";
 import Fichas from "../../assets/audio/fichas-roulette.mp3";
 import { numbers, chances, columns } from "../../utils/numbers";
 import "./Board.scss";
-import Columns from "./components/chances/triples/Columns";
-import Dozens from "./components/chances/triples/Dozens";
+import Columns from "./components/chances/triple/Columns";
+import Dozens from "./components/chances/triple/Dozens";
 import { CasinoContext } from "../../contexts/CasinoContext";
 import { BoardContext } from "../../contexts/BoardContext"
 
@@ -24,46 +24,46 @@ function Board() {
 
   const [toggle] = useAudio(Fichas, 2);
 
-  const userChanceBet = (chance, numbers) => {
-    numbers.forEach((number) => {
-      number.bets++;
-    });
+  // const userChanceBet = (chance, numbers) => {
+  //   numbers.forEach((number) => {
+  //     number.bets++;
+  //   });
 
-    const isBet = chance.bets === 0;
+  //   const isBet = chance.bets === 0;
 
-    chance.bets++;
+  //   chance.bets++;
 
-    if (isBet) {
-      setSelectedNumbers([...selectedNumbers, ...numbers]);
-    } else {
-      setSelectedNumbers([...selectedNumbers]);
-    }
-  };
+  //   if (isBet) {
+  //     setSelectedNumbers([...selectedNumbers, ...numbers]);
+  //   } else {
+  //     setSelectedNumbers([...selectedNumbers]);
+  //   }
+  // };
 
-  const userFullBet = (number) => {
-    if (selectedNumbers.map((n) => n.value).includes(number.value)) {
-      const existedBetNumber = selectedNumbers.map((n) => {
-        if (n.value === number.value) {
-          return {
-            ...n,
-            bets: n.bets + 1,
-          };
-        }
-        return n;
-      });
-      setSelectedNumbers(existedBetNumber);
-    } else {
-      setSelectedNumbers([
-        ...selectedNumbers,
-        {
-          value: number.value,
-          color: number.color,
-          bets: number.bets + 1,
-        },
-      ]);
-    }
-    toggle();
-  };
+  // const userFullBet = (number) => {
+  //   if (selectedNumbers.map((n) => n.value).includes(number.value)) {
+  //     const existedBetNumber = selectedNumbers.map((n) => {
+  //       if (n.value === number.value) {
+  //         return {
+  //           ...n,
+  //           bets: n.bets + 1,
+  //         };
+  //       }
+  //       return n;
+  //     });
+  //     setSelectedNumbers(existedBetNumber);
+  //   } else {
+  //     setSelectedNumbers([
+  //       ...selectedNumbers,
+  //       {
+  //         value: number.value,
+  //         color: number.color,
+  //         bets: number.bets + 1,
+  //       },
+  //     ]);
+  //   }
+  //   toggle();
+  // };
 
   function handleHover(numbers) {
     const values = numbers.map((number) => number.value);
@@ -77,7 +77,7 @@ function Board() {
         <span
           className="number number--zero"
           style={{ cursor: "pointer" }}
-          onClick={() => userFullBet({ value: 0, color: "green", bets: 0 })}
+          // onClick={() => userFullBet({ value: 0, color: "green", bets: 0 })}
         >
           {zero.value}
         </span>
@@ -94,9 +94,9 @@ function Board() {
               `}
               key={number.value}
               style={{ background: number.color }}
-              onClick={() => {
-                userFullBet(number);
-              }}
+              // onClick={() => {
+              //   userFullBet(number);
+              // }}
             >
               {number.value}
             </span>
@@ -110,9 +110,9 @@ function Board() {
         <div className="double-chances">
           <span
             className="chance chance__size"
-            onClick={() => {
-              userChanceBet(minor, minor.numbers);
-            }}
+            // onClick={() => {
+            //   userChanceBet(minor, minor.numbers);
+            // }}
             onMouseOver={() => handleHover(minor.numbers)}
             onMouseLeave={() => handleHover([])}
           >
@@ -120,9 +120,9 @@ function Board() {
           </span>
           <span
             className="chance chance__parity"
-            onClick={() => {
-              userChanceBet(pair, minor.numbers);
-            }}
+            // onClick={() => {
+            //   userChanceBet(pair, minor.numbers);
+            // }}
             onMouseOver={() => handleHover(pair.numbers)}
             onMouseLeave={() => handleHover([])}
           >
@@ -133,9 +133,9 @@ function Board() {
             <span
               className="chance chance__color"
               key={color.name}
-              onClick={() => {
-                userChanceBet(color, color.numbers);
-              }}
+              // onClick={() => {
+              //   userChanceBet(color, color.numbers);
+              // }}
               onMouseOver={() => handleHover(color.numbers)}
               onMouseLeave={() => handleHover([])}
             >
@@ -145,9 +145,9 @@ function Board() {
 
           <span
             className="chance chance__parity"
-            onClick={() => {
-              userChanceBet(odd, odd.numbers);
-            }}
+            // onClick={() => {
+            //   userChanceBet(odd, odd.numbers);
+            // }}
             onMouseOver={() => handleHover(odd.numbers)}
             onMouseLeave={() => handleHover([])}
           >
@@ -155,9 +155,9 @@ function Board() {
           </span>
           <span
             className="chance chance__size"
-            onClick={() => {
-              userChanceBet(major, major.numbers);
-            }}
+            // onClick={() => {
+            //   userChanceBet(major, major.numbers);
+            // }}
             onMouseOver={() => handleHover(major.numbers)}
             onMouseLeave={() => handleHover([])}
           >

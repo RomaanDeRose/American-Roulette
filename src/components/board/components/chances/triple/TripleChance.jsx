@@ -24,12 +24,6 @@ export function TripleChance({ name, numbers }) {
     return ( 
         <span
             className={isDozen ? "dozen" : "column"}
-            // onClick={() => {
-            // userChanceBet(
-            //     columns[columns.length + (-i - 1)],
-            //     columns[columns.length + (-i - 1)].numbers
-            // );
-            // }}
             onMouseOver={() =>
                 handleHover(numbers)
             }
