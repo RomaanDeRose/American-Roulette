@@ -1,15 +1,19 @@
+@import '../../assets/mixins/third';
+
 #Board {
-  margin: 1.5rem;
+  width: 80%;
+  margin: 1.5rem auto;
   font-size: 1.4rem;
   color: white;
   .container {
     display: grid;
     grid-template-columns: 0.5fr 12fr 1fr;
+    grid-template-rows: 3fr 1fr 1fr;
   }
   .number {
-    border: 1px solid white;
+    border: 2px solid white;
     font-size: 1.8rem;
-    $commonNumberHeight: 30px;
+    $commonNumberHeight: 60px;
     min-height: $commonNumberHeight;
     line-height: $commonNumberHeight;
     transition: box-shadow 250ms ease-out;
@@ -43,7 +47,7 @@
     display: flex;
     flex-direction: column-reverse;
     .column {
-      flex-grow: 1;
+      @include third(column);
     }
   }
 
@@ -51,7 +55,8 @@
     grid-column: 2;
     display: flex;
     .dozen {
-      flex-grow: 1;
+      @include third(dozen);
+      border-top-width: 0;
     }
   }
 

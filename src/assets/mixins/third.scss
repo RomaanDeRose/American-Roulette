@@ -1,0 +1,44 @@
+@mixin third($type) {
+
+    $isColumn: null;
+
+    @if $type == column {
+        $isColumn: true;
+    } @else if $type == dozen {
+        $isColumn: false;
+    } @else {
+        @error "Incorrect type '#{$type}'. Only accept 'column' or 'dozen'.";
+    }
+
+    flex-grow: 1;
+
+    display: grid;
+    place-content: center;
+
+    border: 2px solid white;
+    font-size: 2.4rem;
+    cursor: cell;
+
+    small, sup {
+        font-size: 1.8rem;
+        font-weight: lighter;
+    }
+
+    &:first-of-type {
+        @if $isColumn {
+            border-top-width: 0;
+            border-bottom-right-radius: 15px;
+        } @else {
+            border-right-width: 0;
+        } 
+    }
+
+    &:last-of-type {
+        @if $isColumn {
+            border-bottom-width: 0;
+            border-top-right-radius: 15px;
+        } @else {
+            border-left-width: 0;       
+        }
+    }
+}

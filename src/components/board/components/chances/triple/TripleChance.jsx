@@ -7,9 +7,10 @@ export function TripleChance({ name, numbers }) {
 
     const renderText = () => {
         if (isDozen) {
-            return <span>{name[0]}<sup>{name[1] + name[2]}</sup></span>;
+            return <span>{name[0]}<sup>{name[1] + name[2]}</sup> 12</span>;
         } else {
-            return <span>2 to 1</span>;
+            
+            return <span>2 <small>to</small> 1</span>;
         }
     }
 
