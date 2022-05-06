@@ -1,4 +1,4 @@
-function Size({ size }) {
+function Size({ size, handleHover }) {
 
     const isMinor = size.name === 'minor';
     const isMajor = size.name === 'major';
@@ -17,8 +17,8 @@ function Size({ size }) {
             // onClick={() => {
             //   userChanceBet(color, size.numbers);
             // }}
-            // onMouseOver={() => handleHover(size.numbers)}
-            // onMouseLeave={() => handleHover([])}
+            onMouseOver={() => handleHover(size.numbers)}
+            onMouseLeave={() => handleHover([])}
             >
             <span>{firstNumber} <small>to</small> {lastNumber}</span>
             

@@ -1,4 +1,4 @@
-import { TripleChance as Dozen } from "./TripleChance";
+import { TripleChanceItem as Dozen } from "./TripleChanceItem";
 import { dozens } from "../../../../../utils/numbers";
 
 function Dozens() {

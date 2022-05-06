@@ -1,4 +1,4 @@
-function Parity({ parity }) {
+function Parity({ parity, handleHover }) {
 
     const isPair = parity.name === 'even';
     const isOdd = parity.name === 'odd';
@@ -14,8 +14,8 @@ function Parity({ parity }) {
             // onClick={() => {
             //   userChanceBet(color, color.numbers);
             // }}
-            // onMouseOver={() => handleHover(color.numbers)}
-            // onMouseLeave={() => handleHover([])}
+            onMouseOver={() => handleHover(parity.numbers)}
+            onMouseLeave={() => handleHover([])}
             >
             <span>{parity.name}</span>
             

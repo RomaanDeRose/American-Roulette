@@ -1,4 +1,4 @@
-function Color({ color }) {
+function Color({ color, handleHover }) {
 
     const isRed = color.name === 'red';
     const isBlack = color.name === 'black';
@@ -14,8 +14,8 @@ function Color({ color }) {
             // onClick={() => {
             //   userChanceBet(color, color.numbers);
             // }}
-            // onMouseOver={() => handleHover(color.numbers)}
-            // onMouseLeave={() => handleHover([])}
+            onMouseOver={() => handleHover(color.numbers)}
+            onMouseLeave={() => handleHover([])}
             >
             <span></span>
         </div>

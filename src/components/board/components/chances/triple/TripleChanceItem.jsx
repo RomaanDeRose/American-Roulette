@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { BoardContext } from "../../../../../contexts/BoardContext";
 
-export function TripleChance({ name, numbers }) {
+export function TripleChanceItem({ name, numbers }) {
 
     const isDozen = name ? true : false;
 

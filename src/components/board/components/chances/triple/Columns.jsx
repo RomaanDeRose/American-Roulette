@@ -1,4 +1,4 @@
-import { TripleChance as Column } from "./TripleChance";
+import { TripleChanceItem as Column } from "./TripleChanceItem";
 import { columns } from "../../../../../utils/numbers";
 
 function Columns() {
