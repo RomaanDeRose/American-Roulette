@@ -23,7 +23,7 @@ export function TripleChance({ name, numbers }) {
       }
 
     return ( 
-        <span
+        <div
             className={isDozen ? "dozen" : "column"}
             onMouseOver={() =>
                 handleHover(numbers)
@@ -33,6 +33,6 @@ export function TripleChance({ name, numbers }) {
             
             { renderText() }
 
-      </span>
+      </div>
     );
 }

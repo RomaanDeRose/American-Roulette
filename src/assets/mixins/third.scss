@@ -10,7 +10,7 @@
         @error "Incorrect type '#{$type}'. Only accept 'column' or 'dozen'.";
     }
 
-    flex-grow: 1;
+    flex-basis: calc(100% / 3);
 
     display: grid;
     place-content: center;

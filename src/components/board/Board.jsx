@@ -1,20 +1,15 @@
 import { useContext, useState } from "react";
 import { useAudio } from "../../hooks/useAudio";
 import Fichas from "../../assets/audio/fichas-roulette.mp3";
-import { numbers, chances, columns } from "../../utils/numbers";
+import { numbers, chances } from "../../utils/numbers";
 import "./Board.scss";
 import Columns from "./components/chances/triple/Columns";
 import Dozens from "./components/chances/triple/Dozens";
 import { CasinoContext } from "../../contexts/CasinoContext";
 import { BoardContext } from "../../contexts/BoardContext"
+import DoubleChances from "./components/chances/double/DoubleChances";
 
 const [zero, ...restNumbers] = numbers;
-const colors = [chances[0], chances[1]];
-const parities = [chances[2], chances[3]];
-const sizes = [chances[4], chances[5]];
-
-const [pair, odd] = parities;
-const [minor, major] = sizes;
 
 function Board() {
 
@@ -107,63 +102,8 @@ function Board() {
 
         <Dozens/>
 
-        <div className="double-chances">
-          <span
-            className="chance chance__size"
-            // onClick={() => { 
-            //   userChanceBet(minor, minor.numbers);
-            // }}
-            onMouseOver={() => handleHover(minor.numbers)}
-            onMouseLeave={() => handleHover([])}
-          >
-            {minor.name}
-          </span>
-          <span
-            className="chance chance__parity"
-            // onClick={() => {
-            //   userChanceBet(pair, minor.numbers);
-            // }}
-            onMouseOver={() => handleHover(pair.numbers)}
-            onMouseLeave={() => handleHover([])}
-          >
-            {pair.name}
-          </span>
+        <DoubleChances/>
 
-          {colors.map((color, i) => (
-            <span
-              className="chance chance__color"
-              key={color.name}
-              // onClick={() => {
-              //   userChanceBet(color, color.numbers);
-              // }}
-              onMouseOver={() => handleHover(color.numbers)}
-              onMouseLeave={() => handleHover([])}
-            >
-              {color.name}
-            </span>
-          ))}
-
-          <span
-            className="chance chance__parity"
-            // onClick={() => {
-            //   userChanceBet(odd, odd.numbers);
-            // }}
-            onMouseOver={() => handleHover(odd.numbers)}
-            onMouseLeave={() => handleHover([])}
-          >
-            {odd.name}
-          </span>
-          <span
-            className="chance chance__size"
-            // onClick={() => {
-            //   userChanceBet(major, major.numbers);
-            // }}
-            onMouseOver={() => handleHover(major.numbers)}
-            onMouseLeave={() => handleHover([])}
-          >
-            {major.name}
-          </span>
-        </div>
       </div>
     </div>
   );

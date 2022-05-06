@@ -151,42 +151,42 @@ const numbers = [
 ]
 
 const red = {
-    name: 'red numbers',
+    name: 'red',
     numbers: [],
     ratio: 2,
     bets: 0
 }
 
 const black = {
-    name: 'black numbers',
+    name: 'black',
     numbers: [],
     ratio: 2,
     bets: 0
 }
 
-const pair = {
-    name: 'pair numbers',
+const even = {
+    name: 'even',
     numbers: [],
     ratio: 2,
     bets: 0
 }
 
 const odd = {
-    name: 'odd numbers',
+    name: 'odd',
     numbers: [],
     ratio: 2,
     bets: 0
 }
 
 const minor = {
-    name: 'minor numbers',
+    name: 'minor',
     numbers: [],
     ratio: 2,
     bets: 0
 }
 
 const major = {
-    name: 'major numbers',
+    name: 'major',
     numbers: [],
     ratio: 2,
     bets: 0
@@ -238,7 +238,13 @@ const dozens = [dozen1, dozen2, dozen3];
 
 const columns = [column1, column2, column3];
 
-const chances = [red, black, pair, odd, minor, major, ...dozens, ...columns];
+const colors = {red: red, black: black};
+
+const sizes = {minor: minor, major: major};
+
+const parities = {even: even, odd: odd};
+
+const chances = [red, black, even, odd, minor, major, ...dozens, ...columns];
 
 for (let i = 1; i < numbers.length; i++) {
     const number = numbers[i];
@@ -266,7 +272,7 @@ for (let i = 1; i < numbers.length; i++) {
     }
     
     if (i%2 === 0) {
-        pair.numbers.push(number);
+        even.numbers.push(number);
     } else {
         odd.numbers.push(number);
     }
@@ -280,4 +286,4 @@ for (let i = 1; i < numbers.length; i++) {
     }
 }
 
-export {numbers, chances, dozens, columns};
+export {numbers, chances, dozens, columns, colors, sizes, parities};
