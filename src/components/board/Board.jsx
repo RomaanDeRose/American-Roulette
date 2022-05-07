@@ -1,21 +1,23 @@
 import { useContext, useState } from "react";
 import { useAudio } from "../../hooks/useAudio";
 import Fichas from "../../assets/audio/fichas-roulette.mp3";
+import Ficha from "../../assets/images/ficha.png";
 import { numbers, chances } from "../../utils/numbers";
 import "./Board.scss";
 import Columns from "./components/chances/triple/Columns";
 import Dozens from "./components/chances/triple/Dozens";
 import { CasinoContext } from "../../contexts/CasinoContext";
-import { BoardContext } from "../../contexts/BoardContext"
+import { BoardContext } from "../../contexts/BoardContext";
 import DoubleChances from "./components/chances/double/DoubleChances";
 
 const [zero, ...restNumbers] = numbers;
 
 function Board() {
+  const { selectedNumbers, setSelectedNumbers, userFullBet } =
+    useContext(CasinoContext);
 
-  const { selectedNumbers, setSelectedNumbers } = useContext(CasinoContext);
-
-  const { preselectedNumbers, setPreselectedNumbers } = useContext(BoardContext);
+  const { preselectedNumbers, setPreselectedNumbers } =
+    useContext(BoardContext);
 
   const [toggle] = useAudio(Fichas, 2);
 
@@ -60,21 +62,20 @@ function Board() {
   //   toggle();
   // };
 
-  function handleHover(numbers) {
-    const values = numbers.map((number) => number.value);
-    setPreselectedNumbers([...values]);
-  }
-
   return (
     <div id="Board">
-      
       <div className="container">
         <span
           className="number number--zero"
           style={{ cursor: "pointer" }}
-          // onClick={() => userFullBet({ value: 0, color: "green", bets: 0 })}
+          onClick={() => userFullBet(zero, toggle)}
         >
           {zero.value}
+          {selectedNumbers.map((n) => n.value).includes(zero.value) ? (
+            <img src={Ficha} alt={`ficha-${zero.bets}`} />
+          ) : (
+            ""
+          )}
         </span>
         <div className="common-numbers">
           {restNumbers.map((number) => (
@@ -89,21 +90,25 @@ function Board() {
               `}
               key={number.value}
               style={{ background: number.color }}
-              // onClick={() => {
-              //   userFullBet(number);
-              // }}
+              onClick={() => {
+                userFullBet(number, toggle);
+              }}
             >
               {number.value}
+              {selectedNumbers.map((n) => n.value).includes(number.value) ? (
+                <img src={Ficha} alt={`ficha-${number.bets}`} />
+              ) : (
+                ""
+              )}
             </span>
           ))}
         </div>
 
         <Columns />
 
-        <Dozens/>
+        <Dozens />
 
-        <DoubleChances/>
-
+        <DoubleChances />
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-@import '../../assets/mixins/third';
+@import "../../assets/mixins/third";
 
 #Board {
   width: 80%;
@@ -10,6 +10,13 @@
     grid-template-columns: 0.5fr 12fr 1fr;
     grid-template-rows: 3fr 1fr 1fr;
   }
+  & img {
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    top: calc(50% - 24px);
+    left: calc(50% - 11px);
+  }
   .number {
     border: 2px solid white;
     font-size: 1.8rem;
@@ -17,11 +24,13 @@
     min-height: $commonNumberHeight;
     line-height: $commonNumberHeight;
     transition: box-shadow 250ms ease-out;
+    position: relative;
     &--zero {
       line-height: $commonNumberHeight * 3 + 6;
       background-color: green;
     }
-    &:hover, &.number--preselected {
+    &:hover,
+    &.number--preselected {
       box-shadow: inset 0 0 40px #fafafa;
     }
   }

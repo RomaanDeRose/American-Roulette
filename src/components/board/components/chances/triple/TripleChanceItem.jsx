@@ -2,37 +2,41 @@ import { useContext } from "react";
 import { BoardContext } from "../../../../../contexts/BoardContext";
 
 export function TripleChanceItem({ name, numbers }) {
+  const isDozen = name ? true : false;
 
-    const isDozen = name ? true : false;
-
-    const renderText = () => {
-        if (isDozen) {
-            return <span>{name[0]}<sup>{name[1] + name[2]}</sup> 12</span>;
-        } else {
-            
-            return <span>2 <small>to</small> 1</span>;
-        }
+  const renderText = () => {
+    if (isDozen) {
+      return (
+        <span>
+          {name[0]}
+          <sup>{name[1] + name[2]}</sup> 12
+        </span>
+      );
+    } else {
+      return (
+        <span>
+          2 <small>to</small> 1
+        </span>
+      );
     }
+  };
 
-    const { preselectedNumbers, setPreselectedNumbers } = useContext(BoardContext);
+  const { preselectedNumbers, setPreselectedNumbers } =
+    useContext(BoardContext);
 
-    function handleHover(numbers) {
-        const values = numbers.map((number) => number.value);
-        setPreselectedNumbers([...values]);
-        console.log(values, preselectedNumbers);
-      }
+  function handleHover(numbers) {
+    const values = numbers.map((number) => number.value);
+    setPreselectedNumbers([...values]);
+    console.log(values, preselectedNumbers);
+  }
 
-    return ( 
-        <div
-            className={isDozen ? "dozen" : "column"}
-            onMouseOver={() =>
-                handleHover(numbers)
-            }
-            onMouseLeave={() => handleHover([])}
-        >
-            
-            { renderText() }
-
-      </div>
-    );
+  return (
+    <div
+      className={isDozen ? "dozen" : "column"}
+      onMouseOver={() => handleHover(numbers)}
+      onMouseLeave={() => handleHover([])}
+    >
+      {renderText()}
+    </div>
+  );
 }

@@ -1,6 +1,7 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useRef, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import ReactCanvasConfetti from "react-canvas-confetti";
 import { Wheel } from "react-custom-roulette";
 import { data } from "../../utils/numbersRoulette";
 import { useAudio } from "../../hooks/useAudio";
@@ -32,6 +33,61 @@ function Roulette() {
 
   const [lastNumber, setLastNumber] = useState({ value: null, color: null });
 
+  const canvasStyles = {
+    position: "fixed",
+    zIndex: 10000,
+    pointerEvents: "none",
+    width: "100%",
+    height: "100%",
+    top: 0,
+    left: 0,
+  };
+
+  const refAnimationInstance = useRef(null);
+
+  const getInstance = useCallback((instance) => {
+    refAnimationInstance.current = instance;
+  }, []);
+
+  const makeShot = useCallback((particleRatio, opts) => {
+    refAnimationInstance.current &&
+      refAnimationInstance.current({
+        ...opts,
+        origin: { y: 0.6 },
+        particleCount: Math.floor(500 * particleRatio),
+        colors: ["#ff0000", "#000000"],
+      });
+  }, []);
+
+  const fire = useCallback(() => {
+    makeShot(0.25, {
+      spread: 26,
+      startVelocity: 55,
+    });
+
+    makeShot(0.2, {
+      spread: 60,
+    });
+
+    makeShot(0.35, {
+      spread: 100,
+      decay: 0.91,
+      scalar: 0.8,
+    });
+
+    makeShot(0.1, {
+      spread: 120,
+      startVelocity: 25,
+      decay: 0.92,
+      scalar: 1.2,
+    });
+
+    makeShot(0.1, {
+      spread: 120,
+      startVelocity: 45,
+    });
+  }, [makeShot]);
+
   const handleSpinClick = () => {
     const newPrizeNumber = Math.floor(Math.random() * rouletteData.length);
     setPrizeNumber(newPrizeNumber);
@@ -47,12 +103,9 @@ function Roulette() {
     );
   };
 
-  // const toastNumber = () => toast(lastNumber.value);
-
-  const resultMessage = <h3 className="win">Acertaste!</h3>;
+  // const resultMessage = <h3 className="win">Acertaste!</h3>;
 
   useEffect(() => {
-    // const [actualType] = rouletteTypes;
     if (rouletteType === "american") {
       if (data.length === 37) {
         data.splice(19, 0, {
@@ -71,10 +124,7 @@ function Roulette() {
 
   return (
     <>
-      {/* <button onClick={() => changeType(rouletteTypes, setRouletteType)}>
-        Cambiar a Ruleta {translateType(rouletteTypes[1])}
-      </button> */}
-      {isHitBet && !mustSpin && resultMessage}
+      {isHitBet && !mustSpin && fire()}
 
       <HistorialBets lastNumber={lastNumber} />
       <Wheel
@@ -101,6 +151,7 @@ function Roulette() {
             color: rouletteData[prizeNumber].style.backgroundColor,
           });
           toast(rouletteData[prizeNumber].option);
+          setSelectedNumbers([]);
         }}
       />
       <button onClick={handleSpinClick}>SPIN</button>
@@ -112,34 +163,9 @@ function Roulette() {
       {!mustSpin || <h2>ruleta girando...</h2>}
 
       <p>
-        {selectedNumbers.length > 0 ? (
-          <>
-            <p>elegiste el/los número/s</p>
-            {selectedNumbers.map((number) => (
-              <>
-                <span
-                  key={number.value}
-                  className="selected-number"
-                  style={{
-                    backgroundColor: number.color,
-                  }}
-                  onClick={() => {
-                    setSelectedNumbers([
-                      ...selectedNumbers.filter(
-                        (n) => n.value !== number.value
-                      ),
-                    ]);
-                  }}
-                >
-                  {number.value}
-                  <span className="chip">{number.bets}</span>
-                </span>
-              </>
-            ))}
-          </>
-        ) : (
-          "No has seleccionado ningún número, cagón"
-        )}
+        {selectedNumbers.length > 0
+          ? "Buena suerte!"
+          : "No has seleccionado ningún número, cagón"}
       </p>
 
       <BoardContextProvider>
@@ -149,7 +175,7 @@ function Roulette() {
       <Toaster
         position="top-left"
         toastOptions={{
-          duration: 2000,
+          duration: 3000,
           style: {
             background: lastNumber.color,
             color: "#fff",
@@ -160,6 +186,7 @@ function Roulette() {
           },
         }}
       />
+      <ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />
     </>
   );
 }
