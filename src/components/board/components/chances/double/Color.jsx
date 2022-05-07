@@ -17,7 +17,7 @@ function Color({ color, handleHover }) {
             onMouseOver={() => handleHover(color.numbers)}
             onMouseLeave={() => handleHover([])}
             >
-            <span></span>
+            <span className="diamond"></span>
         </div>
      );
 }

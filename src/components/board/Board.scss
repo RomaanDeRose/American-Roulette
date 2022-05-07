@@ -1,4 +1,4 @@
-@import "../../assets/mixins/third";
+@import "../../assets/mixins/chances";
 
 #Board {
   width: 80%;
@@ -56,7 +56,7 @@
     display: flex;
     flex-direction: column-reverse;
     .column {
-      @include third(column);
+      @include chance--triple(column);
     }
   }
 
@@ -64,7 +64,7 @@
     grid-column: 2;
     display: flex;
     .dozen {
-      @include third(dozen);
+      @include chance--triple(dozen);
       border-top-width: 0;
     }
   }
@@ -72,40 +72,30 @@
   .double-chances {
     @extend #dozens;
     .chance {
-      flex-grow: 1;
-      display: grid;
-      place-content: center;
-      flex-basis: calc(100% / 6);
-      font-size: 2.4rem;
-      border-style: solid;
-      border-color: white;
-      border-width: 0 1px 2px;
-      cursor: cell;
+      @include chance--double;
+
       &:first-of-type {
         border-left-width: 2px;
+        border-bottom-left-radius: 15px;
       }
       &:last-of-type {
         border-right-width: 2px;
+        border-bottom-right-radius: 15px;
       }
       &__parity {
         text-transform: uppercase;
       }
-      &__size {
-        small {
-          font-size: 1.8rem;
-          font-weight: lighter;
-        }
-      }
+
       &__color {
-        span {
+        .diamond {
           width: 80px;
           height: 40px;
           clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
         }
-        &--red span {
+        &--red .diamond {
           background-color: red;
         }
-        &--black span {
+        &--black .diamond {
           background-color: black;
         }
       }
