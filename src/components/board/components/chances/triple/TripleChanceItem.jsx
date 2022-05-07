@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { BoardContext } from "../../../../../contexts/BoardContext";
+import "./TripleChances.scss";
 
 export function TripleChanceItem({ name, numbers }) {
   const isDozen = name ? true : false;

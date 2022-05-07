@@ -1,0 +1,18 @@
+@import '../../../../../assets/mixins/chances.scss';
+
+#columns {
+    display: flex;
+    flex-direction: column-reverse;
+    .column {
+        @include chance--triple(column);
+    }
+}
+
+#dozens {
+    grid-column: 2;
+    display: flex;
+    .dozen {
+        @include chance--triple(dozen);
+        border-top-width: 0;
+    }
+}

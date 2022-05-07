@@ -4,6 +4,7 @@ import { colors, sizes, parities } from "../../../../../utils/numbers";
 import Color from "./Color";
 import Size from "./Size";
 import Parity from "./Parity";
+import "./DoubleChances.scss";
 
 
 function DoubleChances() {
