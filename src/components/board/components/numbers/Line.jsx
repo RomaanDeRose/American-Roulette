@@ -1,7 +1,7 @@
-function Line() {
-    return ( 
-        <span className="line">
+function Line({ numbers }) {
 
+    return ( 
+        <span className="line" onClick={() => console.log(numbers, numbers.length)}>
         </span>
      );
 }

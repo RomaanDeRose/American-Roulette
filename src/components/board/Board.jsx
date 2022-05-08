@@ -2,15 +2,16 @@ import { useContext, useState } from "react";
 import { useAudio } from "../../hooks/useAudio";
 import Fichas from "../../assets/audio/fichas-roulette.mp3";
 import Ficha from "../../assets/images/ficha.png";
-import { numbers, chances } from "../../utils/numbers";
+import { numbers } from "../../utils/numbers";
 import "./Board.scss";
 import Columns from "./components/chances/triple/Columns";
 import Dozens from "./components/chances/triple/Dozens";
 import { CasinoContext } from "../../contexts/CasinoContext";
 import { BoardContext } from "../../contexts/BoardContext";
 import DoubleChances from "./components/chances/double/DoubleChances";
-
-const [zero, ...restNumbers] = numbers;
+import Line from "./components/numbers/Line";
+import Number from "./components/numbers/Number";
+import { useParams } from "react-router-dom";
 
 function Board() {
   const { selectedNumbers, setSelectedNumbers, userFullBet } =
@@ -20,6 +21,30 @@ function Board() {
     useContext(BoardContext);
 
   const [toggle] = useAudio(Fichas, 2);
+
+  const { rouletteType } = useParams();
+
+  console.log(rouletteType);
+
+  const [zero, ...restNumbers] = numbers;
+
+  const lines = [];
+
+  for (let i = 1; i < 37; i = i + 3) {
+    lines.push(<Line numbers={[i, i + 1, i + 2]} key={`${i}-${i+2}`}/>)
+  }
+
+  // if(rouletteType === "european") {
+  //   var [zero, ...restNumbers] = numbers;
+  // } else if(rouletteType === "american") {
+  //   // numbers.unshift({
+  //   //   value: '00',
+  //   //   color: null,
+  //   //   bets: 0,
+  //   // })
+  //   var [doubleZero, zero, ...restNumbers] = numbers;
+  //}
+
 
   // const userChanceBet = (chance, numbers) => {
   //   numbers.forEach((number) => {
@@ -65,42 +90,17 @@ function Board() {
   return (
     <div id="Board">
       <div className="container">
-        <span
-          className="number number--zero"
-          style={{ cursor: "pointer" }}
-          onClick={() => userFullBet(zero, toggle)}
-        >
-          {zero.value}
-          {selectedNumbers.map((n) => n.value).includes(zero.value) ? (
-            <img src={Ficha} alt={`ficha-${zero.bets}`} />
-          ) : (
-            ""
-          )}
-        </span>
+        <div className="lines">
+          { lines }
+        </div>
+        <div className="dirty-numbers">
+          <Number number={zero} />
+          {/* {rouletteType === "american" && <Number number={doubleZero} />} */}
+        </div>
+
         <div className="common-numbers">
-          {restNumbers.map((number) => (
-            <span
-              className={`
-                number
-                ${
-                  preselectedNumbers.includes(number.value)
-                    ? "number--preselected"
-                    : ""
-                }
-              `}
-              key={number.value}
-              style={{ background: number.color }}
-              onClick={() => {
-                userFullBet(number, toggle);
-              }}
-            >
-              {number.value}
-              {selectedNumbers.map((n) => n.value).includes(number.value) ? (
-                <img src={Ficha} alt={`ficha-${number.bets}`} />
-              ) : (
-                ""
-              )}
-            </span>
+          {restNumbers.map((number, i) => (
+            <Number number={number} key={i}/>
           ))}
         </div>
 

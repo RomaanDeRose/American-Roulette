@@ -18,7 +18,6 @@ function DoubleChances() {
     function handleHover(numbers) {
         const values = numbers.map((number) => number.value);
         setPreselectedNumbers([...values]);
-        console.log(values, preselectedNumbers);
       }
 
     return ( 

@@ -8,7 +8,7 @@
   .container {
     display: grid;
     grid-template-columns: 0.5fr 12fr 1fr;
-    grid-template-rows: 3fr 1fr 1fr;
+    grid-template-rows: 3px 3fr 1fr 1fr;
   }
   & img {
     width: 22px;
@@ -16,6 +16,14 @@
     position: absolute;
     top: calc(50% - 24px);
     left: calc(50% - 11px);
+  }
+  .lines {
+    grid-column: 2 / 3;
+    display: flex;
+    .line {
+      flex-grow: 1;
+      background-color: white;
+    }
   }
   .number {
     border: 2px solid white;
@@ -28,18 +36,26 @@
     &--zero {
       line-height: $commonNumberHeight * 3 + 6;
       background-color: green;
+      display: block;
+      height: 100%;
+      box-sizing: border-box;
     }
     &:hover,
     &.number--preselected {
       box-shadow: inset 0 0 40px #fafafa;
     }
   }
-
+  .dirty-numbers {
+    grid-row: 1 / 3;
+    grid-column: 1;
+  }
   .common-numbers {
     display: grid;
     grid-template: repeat(3, 1fr) / repeat(12, 1fr);
+    grid-column-start: 2;
     cursor: pointer;
     .number {
+      border-top: none;
       &:nth-of-type(3n) {
         grid-row: 1;
       }

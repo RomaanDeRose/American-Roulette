@@ -1,7 +1,7 @@
 const numbers = [
     {
         value: 0,
-        color: 'none',
+        color: null,
         bets: 0,
     }, {
         value: 1,
