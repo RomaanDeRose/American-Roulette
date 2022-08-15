@@ -4,13 +4,9 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import App from './App.tsx';
 import "./index.css";
-<<<<<<< Updated upstream:src/index.js
- 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-=======
+
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
->>>>>>> Stashed changes:src/index.tsx
 root.render(
   // <React.StrictMode>
   <BrowserRouter>
