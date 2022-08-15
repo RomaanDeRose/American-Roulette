@@ -11,7 +11,7 @@ function App() {
       <CasinoContextProvider>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/:rouletteType" element={<Roulette />} />
+          <Route path="/roulette" element={<Roulette />} />
         </Routes>
       </CasinoContextProvider>
     </div>

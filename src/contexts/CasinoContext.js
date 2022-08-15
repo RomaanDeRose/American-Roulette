@@ -5,8 +5,6 @@ const CasinoContext = createContext();
 function CasinoContextProvider({ children }) {
   const [selectedNumbers, setSelectedNumbers] = useState([]);
 
-  const [rouletteTypes, setRouletteType] = useState(["american", "european"]);
-
   const userFullBet = (number, toggle) => {
     if (selectedNumbers.map((n) => n.value).includes(number.value)) {
       const existedBetNumber = selectedNumbers.map((n) => {
@@ -39,8 +37,6 @@ function CasinoContextProvider({ children }) {
       value={{
         selectedNumbers,
         setSelectedNumbers,
-        rouletteTypes,
-        setRouletteType,
         userFullBet,
       }}
     >

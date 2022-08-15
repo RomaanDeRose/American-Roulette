@@ -1,5 +1,4 @@
 import { useEffect, useState, useContext, useRef, useCallback } from "react";
-import { useParams } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import ReactCanvasConfetti from "react-canvas-confetti";
 import { Wheel } from "react-custom-roulette";
@@ -10,12 +9,9 @@ import HistorialBets from "../historialBets/HistorialBets";
 import Board from "../board/Board";
 import { CasinoContext } from "../../contexts/CasinoContext";
 import BoardContextProvider from "../../contexts/BoardContext";
-// import { changeType, translateType } from "../../utils/rouletteTypes.services";
 
 function Roulette() {
   const { selectedNumbers, setSelectedNumbers } = useContext(CasinoContext);
-
-  const { rouletteType } = useParams();
 
   const [toggle] = useAudio(Ruleta);
 
@@ -106,21 +102,11 @@ function Roulette() {
   // const resultMessage = <h3 className="win">Acertaste!</h3>;
 
   useEffect(() => {
-    if (rouletteType === "american") {
-      if (data.length === 37) {
-        data.splice(19, 0, {
-          option: "00",
-          style: { backgroundColor: "#318D42" },
-        });
-        setRouletteData([...data]);
-      }
-    } else {
-      if (data.length === 38) {
-        data.splice(19, 1);
-        setRouletteData([...data]);
-      }
+    if (data.length === 38) {
+      data.splice(19, 1);
+      setRouletteData([...data]);
     }
-  }, [rouletteType]);
+  }, []);
 
   return (
     <>
