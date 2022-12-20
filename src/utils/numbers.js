@@ -1,151 +1,152 @@
+import { GREEN_COLOR, RED_COLOR, BLACK_COLOR } from "./constants/colors"
 const numbers = [
     {
         value: 0,
-        color: null,
+        color: GREEN_COLOR,
         bets: 0,
     }, {
         value: 1,
-        color: 'red',
+        color: RED_COLOR,
         bets: 0,
     }, {
         value: 2,
-        color: 'black',
+        color: BLACK_COLOR,
         bets: 0,
     }, {
         value: 3,
-        color: 'red',
+        color: RED_COLOR,
         bets: 0,
     }, {
         value: 4,
-        color: 'black',
+        color: BLACK_COLOR,
         bets: 0,
     }, {
         value: 5,
-        color: 'red',
+        color: RED_COLOR,
         bets: 0,
     }, {
         value: 6,
-        color: 'black',
+        color: BLACK_COLOR,
         bets: 0,
     }, {
         value: 7,
-        color: 'red',
+        color: RED_COLOR,
         bets: 0,
     }, {
         value: 8,
-        color: 'black',
+        color: BLACK_COLOR,
         bets: 0,
     }, {
         value: 9,
-        color: 'red',
+        color: RED_COLOR,
         bets: 0,
     }, {
         value: 10,
-        color: 'black',
+        color: BLACK_COLOR,
         bets: 0,
     }, {
         value: 11,
-        color: 'black',
+        color: BLACK_COLOR,
         bets: 0,
     }, {
         value: 12,
-        color: 'red',
+        color: RED_COLOR,
         bets: 0,
     }, {
         value: 13,
-        color: 'black',
+        color: BLACK_COLOR,
         bets: 0,
     }, {
         value: 14,
-        color: 'red',
+        color: RED_COLOR,
         bets: 0,
     }, {
         value: 15,
-        color: 'black',
+        color: BLACK_COLOR,
         bets: 0,
     }, {
         value: 16,
-        color: 'red',
+        color: RED_COLOR,
         bets: 0,
     }, {
         value: 17,
-        color: 'black',
+        color: BLACK_COLOR,
         bets: 0,
     }, {
         value: 18,
-        color: 'red',
+        color: RED_COLOR,
         bets: 0,
     }, {
         value: 19,
-        color: 'red',
+        color: RED_COLOR,
         bets: 0,
     }, {
         value: 20,
-        color: 'black',
+        color: BLACK_COLOR,
         bets: 0,
     }, {
         value: 21,
-        color: 'red',
+        color: RED_COLOR,
         bets: 0,
     }, {
         value: 22,
-        color: 'black',
+        color: BLACK_COLOR,
         bets: 0,
     }, {
         value: 23,
-        color: 'red',
+        color: RED_COLOR,
         bets: 0,
     }, {
         value: 24,
-        color: 'black',
+        color: BLACK_COLOR,
         bets: 0,
     }, {
         value: 25,
-        color: 'red',
+        color: RED_COLOR,
         bets: 0,
     }, {
         value: 26,
-        color: 'black',
+        color: BLACK_COLOR,
         bets: 0,
     }, {
         value: 27,
-        color: 'red',
+        color: RED_COLOR,
         bets: 0,
     }, {
         value: 28,
-        color: 'black',
+        color: BLACK_COLOR,
         bets: 0,
     }, {
         value: 29,
-        color: 'black',
+        color: BLACK_COLOR,
         bets: 0,
     }, {
         value: 30,
-        color: 'red',
+        color: RED_COLOR,
         bets: 0,
     }, {
         value: 31,
-        color: 'black',
+        color: BLACK_COLOR,
         bets: 0,
     }, {
         value: 32,
-        color: 'red',
+        color: RED_COLOR,
         bets: 0,
     }, {
         value: 33,
-        color: 'black',
+        color: BLACK_COLOR,
         bets: 0,
     }, {
         value: 34,
-        color: 'red',
+        color: RED_COLOR,
         bets: 0,
     }, {
         value: 35,
-        color: 'black',
+        color: BLACK_COLOR,
         bets: 0,
     }, {
         value: 36,
-        color: 'red',
+        color: RED_COLOR,
         bets: 0,
     }
 ]
@@ -265,7 +266,7 @@ for (let i = 1; i < numbers.length; i++) {
         }
     }
 
-    if (number.color === 'black') {
+    if (number.color === BLACK_COLOR) {
         black.numbers.push(number);
     } else {
         red.numbers.push(number);
