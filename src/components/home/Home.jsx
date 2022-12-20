@@ -7,7 +7,7 @@ function Home() {
     <div className="home">
       <div className="home-container">
         <h1 className="home-container_title">Bienvenido!</h1>
-        <h3 className="home-container_subtitle">¿Que querés jugar?</h3>
+        <h2 className="home-container_subtitle">¿Que querés jugar?</h2>
         <div className="home-container_options">
           <Link to={`/roulette`}>Ruleta</Link>
         </div>

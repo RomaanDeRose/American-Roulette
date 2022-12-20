@@ -8,7 +8,7 @@
   .container {
     display: grid;
     grid-template-columns: 0.5fr 12fr 1fr;
-    grid-template-rows: 3px 3fr 1fr 1fr;
+    grid-template-rows: 3px 3fr 5px 1fr 1fr;
   }
   & img {
     width: 22px;
@@ -17,22 +17,15 @@
     top: calc(50% - 24px);
     left: calc(50% - 11px);
   }
-  .lines {
-    grid-column: 2 / 3;
-    display: flex;
-    .line {
-      flex-grow: 1;
-      background-color: white;
-    }
-  }
   .number {
-    border: 2px solid white;
     font-size: 1.8rem;
     $commonNumberHeight: 60px;
     min-height: $commonNumberHeight;
     line-height: $commonNumberHeight;
     transition: box-shadow 250ms ease-out;
     position: relative;
+    font-weight: 600;
+    font-family: cursive;
     &--zero {
       line-height: $commonNumberHeight * 3 + 6;
       background-color: green;
@@ -53,6 +46,7 @@
     display: grid;
     grid-template: repeat(3, 1fr) / repeat(12, 1fr);
     grid-column-start: 2;
+    grid-row: 1 / 3;
     cursor: pointer;
     .number {
       border-top: none;

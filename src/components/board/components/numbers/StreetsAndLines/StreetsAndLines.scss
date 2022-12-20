@@ -1,0 +1,18 @@
+.streets-and-lines {
+  grid-row: 3;
+  grid-column: 2 / 3;
+  display: flex;
+  .street {
+    flex-grow: 1;
+    background: white;
+  }
+  .line {
+    display: inline-block;
+    width: 5px;
+    background-color: #DADDE2;
+  }
+  .street, .line {
+    height: 5px;
+    cursor: pointer;
+  }
+}
