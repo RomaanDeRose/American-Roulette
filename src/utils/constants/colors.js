@@ -1,0 +1,5 @@
+const GREEN_COLOR = "#007700";
+const RED_COLOR = "#B10000";
+const BLACK_COLOR = "#2A272A";
+
+export {GREEN_COLOR, RED_COLOR, BLACK_COLOR};
