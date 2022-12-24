@@ -1,5 +1,5 @@
 function Number({ number } ) {
-  const isZeroNumber = number.value === 0;
+  const isZeroNumber = number.value === '0';
   return ( 
     <span 
     className={`number ${isZeroNumber ? 'number--zero' : ""}`} 

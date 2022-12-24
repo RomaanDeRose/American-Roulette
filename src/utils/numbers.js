@@ -1,115 +1,115 @@
 import { GREEN_COLOR, RED_COLOR, BLACK_COLOR } from "./constants/colors"
 const numbers = [
     {
-        value: 0,
+        value: '0',
         color: GREEN_COLOR,
     }, {
-        value: 1,
+        value: '1',
         color: RED_COLOR,
     }, {
-        value: 2,
+        value: '2',
         color: BLACK_COLOR,
     }, {
-        value: 3,
+        value: '3',
         color: RED_COLOR,
     }, {
-        value: 4,
+        value: '4',
         color: BLACK_COLOR,
     }, {
-        value: 5,
+        value: '5',
         color: RED_COLOR,
     }, {
-        value: 6,
+        value: '6',
         color: BLACK_COLOR,
     }, {
-        value: 7,
+        value: '7',
         color: RED_COLOR,
     }, {
-        value: 8,
+        value: '8',
         color: BLACK_COLOR,
     }, {
-        value: 9,
+        value: '9',
         color: RED_COLOR,
     }, {
-        value: 10,
+        value: '10',
         color: BLACK_COLOR,
     }, {
-        value: 11,
+        value: '11',
         color: BLACK_COLOR,
     }, {
-        value: 12,
+        value: '12',
         color: RED_COLOR,
     }, {
-        value: 13,
+        value: '13',
         color: BLACK_COLOR,
     }, {
-        value: 14,
+        value: '14',
         color: RED_COLOR,
     }, {
-        value: 15,
+        value: '15',
         color: BLACK_COLOR,
     }, {
-        value: 16,
+        value: '16',
         color: RED_COLOR,
     }, {
-        value: 17,
+        value: '17',
         color: BLACK_COLOR,
     }, {
-        value: 18,
+        value: '18',
         color: RED_COLOR,
     }, {
-        value: 19,
+        value: '19',
         color: RED_COLOR,
     }, {
-        value: 20,
+        value: '20',
         color: BLACK_COLOR,
     }, {
-        value: 21,
+        value: '21',
         color: RED_COLOR,
     }, {
-        value: 22,
+        value: '22',
         color: BLACK_COLOR,
     }, {
-        value: 23,
+        value: '23',
         color: RED_COLOR,
     }, {
-        value: 24,
+        value: '24',
         color: BLACK_COLOR,
     }, {
-        value: 25,
+        value: '25',
         color: RED_COLOR,
     }, {
-        value: 26,
+        value: '26',
         color: BLACK_COLOR,
     }, {
-        value: 27,
+        value: '27',
         color: RED_COLOR,
     }, {
-        value: 28,
+        value: '28',
         color: BLACK_COLOR,
     }, {
-        value: 29,
+        value: '29',
         color: BLACK_COLOR,
     }, {
-        value: 30,
+        value: '30',
         color: RED_COLOR,
     }, {
-        value: 31,
+        value: '31',
         color: BLACK_COLOR,
     }, {
-        value: 32,
+        value: '32',
         color: RED_COLOR,
     }, {
-        value: 33,
+        value: '33',
         color: BLACK_COLOR,
     }, {
-        value: 34,
+        value: '34',
         color: RED_COLOR,
     }, {
-        value: 35,
+        value: '35',
         color: BLACK_COLOR,
     }, {
-        value: 36,
+        value: '36',
         color: RED_COLOR,
     }
 ]
@@ -117,85 +117,73 @@ const numbers = [
 const red = {
     name: 'red',
     numbers: [],
-    ratio: 2,
-    bets: 0
+    ratio: 2
 }
 
 const black = {
     name: 'black',
     numbers: [],
-    ratio: 2,
-    bets: 0
+    ratio: 2
 }
 
 const even = {
     name: 'even',
     numbers: [],
-    ratio: 2,
-    bets: 0
+    ratio: 2
 }
 
 const odd = {
     name: 'odd',
     numbers: [],
-    ratio: 2,
-    bets: 0
+    ratio: 2
 }
 
 const minor = {
     name: 'minor',
     numbers: [],
-    ratio: 2,
-    bets: 0
+    ratio: 2
 }
 
 const major = {
     name: 'major',
     numbers: [],
-    ratio: 2,
-    bets: 0
+    ratio: 2
 }
 
 const dozen1 = {
     name: '1st',
     numbers: [],
-    ratio: 3,
-    bets: 0
+    ratio: 3
 }
 
 const dozen2 = {
     name: '2nd',
     numbers: [],
-    ratio: 3,
-    bets: 0
+    ratio: 3
 }
 
 const dozen3 = {
     name: '3rd',
     numbers: [],
-    ratio: 3,
-    bets: 0
+    ratio: 3
 }
 
 const column1 = {
     name: 'first column',
     numbers: [],
-    ratio: 3,
-    bets: 0
+    ratio: 3
 }
 
 const column2 = {
     name: 'second column',
     numbers: [],
-    ratio: 3,
-    bets: 0
+    ratio: 3
 }
 
 const column3 = {
     name: 'third column',
     numbers: [],
-    ratio: 3,
-    bets: 0
+    ratio: 3
 }
 
 const dozens = [dozen1, dozen2, dozen3];
@@ -210,44 +198,48 @@ const parities = {even: even, odd: odd};
 
 const chances = [red, black, even, odd, minor, major, ...dozens, ...columns];
 
-for (let i = 1; i < numbers.length; i++) {
-    const number = numbers[i];
+setNumbersCategories(numbers);
 
-    if (i < 19) {
-        minor.numbers.push(number);
-        if (i < 13) {
-            dozen1.numbers.push(number);
-        } else {
-            dozen2.numbers.push(number);
-        }
-    } else {
-        major.numbers.push(number);
-        if (i < 25) {
-            dozen2.numbers.push(number);
-        } else {
-            dozen3.numbers.push(number);
-        }
-    }
-
-    if (number.color === BLACK_COLOR) {
-        black.numbers.push(number);
-    } else {
-        red.numbers.push(number);
-    }
-    
-    if (i%2 === 0) {
-        even.numbers.push(number);
-    } else {
-        odd.numbers.push(number);
-    }
-
-    if (i%3 === 0) {
-        column3.numbers.push(number);
-    } else if ((i - 2)%3 === 0) {
-        column2.numbers.push(number);
-    } else {
-        column1.numbers.push(number);
-    }
+function setNumbersCategories(numbers) {
+  for (let i = 1; i < numbers.length; i++) {
+      const number = numbers[i];
+  
+      if (i < 19) {
+          minor.numbers.push(number);
+          if (i < 13) {
+              dozen1.numbers.push(number);
+          } else {
+              dozen2.numbers.push(number);
+          }
+      } else {
+          major.numbers.push(number);
+          if (i < 25) {
+              dozen2.numbers.push(number);
+          } else {
+              dozen3.numbers.push(number);
+          }
+      }
+  
+      if (number.color === BLACK_COLOR) {
+          black.numbers.push(number);
+      } else {
+          red.numbers.push(number);
+      }
+      
+      if (i%2 === 0) {
+          even.numbers.push(number);
+      } else {
+          odd.numbers.push(number);
+      }
+  
+      if (i%3 === 0) {
+          column3.numbers.push(number);
+      } else if ((i - 2)%3 === 0) {
+          column2.numbers.push(number);
+      } else {
+          column1.numbers.push(number);
+      }
+  }
 }
 
 export {numbers, chances, dozens, columns, colors, sizes, parities};
