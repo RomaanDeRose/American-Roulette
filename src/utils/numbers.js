@@ -3,151 +3,114 @@ const numbers = [
     {
         value: 0,
         color: GREEN_COLOR,
-        bets: 0,
     }, {
         value: 1,
         color: RED_COLOR,
-        bets: 0,
     }, {
         value: 2,
         color: BLACK_COLOR,
-        bets: 0,
     }, {
         value: 3,
         color: RED_COLOR,
-        bets: 0,
     }, {
         value: 4,
         color: BLACK_COLOR,
-        bets: 0,
     }, {
         value: 5,
         color: RED_COLOR,
-        bets: 0,
     }, {
         value: 6,
         color: BLACK_COLOR,
-        bets: 0,
     }, {
         value: 7,
         color: RED_COLOR,
-        bets: 0,
     }, {
         value: 8,
         color: BLACK_COLOR,
-        bets: 0,
     }, {
         value: 9,
         color: RED_COLOR,
-        bets: 0,
     }, {
         value: 10,
         color: BLACK_COLOR,
-        bets: 0,
     }, {
         value: 11,
         color: BLACK_COLOR,
-        bets: 0,
     }, {
         value: 12,
         color: RED_COLOR,
-        bets: 0,
     }, {
         value: 13,
         color: BLACK_COLOR,
-        bets: 0,
     }, {
         value: 14,
         color: RED_COLOR,
-        bets: 0,
     }, {
         value: 15,
         color: BLACK_COLOR,
-        bets: 0,
     }, {
         value: 16,
         color: RED_COLOR,
-        bets: 0,
     }, {
         value: 17,
         color: BLACK_COLOR,
-        bets: 0,
     }, {
         value: 18,
         color: RED_COLOR,
-        bets: 0,
     }, {
         value: 19,
         color: RED_COLOR,
-        bets: 0,
     }, {
         value: 20,
         color: BLACK_COLOR,
-        bets: 0,
     }, {
         value: 21,
         color: RED_COLOR,
-        bets: 0,
     }, {
         value: 22,
         color: BLACK_COLOR,
-        bets: 0,
     }, {
         value: 23,
         color: RED_COLOR,
-        bets: 0,
     }, {
         value: 24,
         color: BLACK_COLOR,
-        bets: 0,
     }, {
         value: 25,
         color: RED_COLOR,
-        bets: 0,
     }, {
         value: 26,
         color: BLACK_COLOR,
-        bets: 0,
     }, {
         value: 27,
         color: RED_COLOR,
-        bets: 0,
     }, {
         value: 28,
         color: BLACK_COLOR,
-        bets: 0,
     }, {
         value: 29,
         color: BLACK_COLOR,
-        bets: 0,
     }, {
         value: 30,
         color: RED_COLOR,
-        bets: 0,
     }, {
         value: 31,
         color: BLACK_COLOR,
-        bets: 0,
     }, {
         value: 32,
         color: RED_COLOR,
-        bets: 0,
     }, {
         value: 33,
         color: BLACK_COLOR,
-        bets: 0,
     }, {
         value: 34,
         color: RED_COLOR,
-        bets: 0,
     }, {
         value: 35,
         color: BLACK_COLOR,
-        bets: 0,
     }, {
         value: 36,
         color: RED_COLOR,
-        bets: 0,
     }
 ]
 
