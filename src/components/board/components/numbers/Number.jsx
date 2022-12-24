@@ -1,11 +1,11 @@
 function Number({ number } ) {
-  const isZeroNumber = number.value === '0';
+  const isZeroNumber = number.option === '0';
   return ( 
     <span 
     className={`number ${isZeroNumber ? 'number--zero' : ""}`} 
-    style={{ background: number.color }} 
-    onClick={() => console.log(number.value)}>
-      {number.value}
+    style={{ background: number.style.backgroundColor }} 
+    onClick={() => console.log(number.option)}>
+      {number.option}
     </span>
   );
 }

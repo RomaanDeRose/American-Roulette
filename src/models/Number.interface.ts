@@ -1,12 +1,12 @@
 import { Color, Column, Dozen, Parity, Size } from "./Chances.enums";
 
-export interface Number {
-    value: number,
-    color: Color,
-    parity: Parity,
-    size: Size,
-    column: Column,
-    dozen: Dozen
+export interface BetNumber {
+    value: string,
+    color: Color | null,
+    parity: Parity | null,
+    size: Size | null,
+    column: Column | null,
+    dozen: Dozen | null
 }
 
 // export const numbers: [
