@@ -8,7 +8,7 @@
   color: white;
   .container {
     display: grid;
-    grid-template-columns: 0.5fr 12fr 1fr;
+    grid-template-columns: 0.75fr 12fr 1fr;
     grid-template-rows: 3px 3fr 5px 1fr 1fr;
   }
   & img {

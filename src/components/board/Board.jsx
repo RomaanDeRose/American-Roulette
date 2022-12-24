@@ -8,6 +8,8 @@ import "./Board.scss";
 
 function Board() {
   const [zero, ...restNumbers] = numbers;
+  const orderedNumbers = restNumbers.sort((n1, n2) => +n1.value - (+n2.value));
+
   return (
     <div id="Board">
       <div className="container">
@@ -15,7 +17,7 @@ function Board() {
           <Number number={zero} />
         </div>
         <div className="common-numbers">
-          {restNumbers.map((number, i) => (
+          {orderedNumbers.map((number, i) => (
             <Number number={number} key={i}/>
           ))}
         </div>
